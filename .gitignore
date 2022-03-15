@@ -1,3 +1,6 @@
+# Mac Special Files
+.DS_STORE
+
 # Prerequisites
 *.d
 
