@@ -6,7 +6,7 @@ COMPONENT_NAME = unit
 
 #--- Inputs ----#
 PROJECT_HOME_DIR = .
-CPPUTEST_HOME=../cpputest
+CPPUTEST_HOME=./cpputest
 PROJECT_DIR=../
 SRC_DIR=$(PROJECT_DIR)/src
 TEST_DIR=$(PROJECT_DIR)/tests

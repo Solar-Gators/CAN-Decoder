@@ -8,8 +8,8 @@
 
 # CPU TEST Build
 
-[ ! -d "cpputest" ] && echo "It looks like the cpputest submodule is not installed. Please run git submodule pull."
-cd cpputest
+[ ! -d "tests/cpputest" ] && echo "It looks like the cpputest submodule is not installed. Please run git submodule pull."
+cd tests/cpputest
 
 # Pulled from http://cpputest.github.io/#using-cpputest-with-makefileworkermk-and-gcc
 autoreconf . -i
