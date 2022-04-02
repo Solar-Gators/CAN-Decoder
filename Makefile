@@ -3,6 +3,8 @@ SRC_DIR=./src
 CODE_DIR=$(SRC_DIR)/code
 OUT=example
 TEST_DIR=tests
+INCLUDES= -I./src/etl/include
+INCLUDES+= -I./src/DataModules/inc
 
 test:
 	make -C $(TEST_DIR)
@@ -13,8 +15,8 @@ test_clean:
 code.o:
 	gcc -c -I$(CODE_DIR) $(CODE_DIR)/code.cpp -o $(CODE_DIR)/code.o
 
-main: code.o
-	gcc -I$(CODE_DIR) $(CODE_DIR)/code.o $(SRC_DIR)/main.cpp -o $(OUT)
+main:
+	g++ -std=c++17 -I$(CODE_DIR) $(INCLUDES) $(SRC_DIR)/main.cpp -o $(OUT)
 
 all: test main
 

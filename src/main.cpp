@@ -1,10 +1,18 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "code.h"
+#include <Steering.hpp>
+#include "main.h"
+#include "etl/function.h"
 
-int main(void)
-{
-  test_func();
-  printf("hello world!\n");
+
+etl::ifunction<void>* timer1_callback;   // A pointer to a callback taking no parameters.
+
+void AddMethod() {
+  printf("This works.");
+}
+
+
+int main(void) {
+  AddMethod();
   exit(0);
 }
