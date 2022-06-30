@@ -50,6 +50,10 @@ namespace SolarGators::DataModules
     return pack_sum_volt_ * 0.01;
   }
 
+  void OrionBMSRx0::PostTelemetry() {
+
+  }
+
   // BMS Message 1
   OrionBMSRx1::OrionBMSRx1(uint32_t can_id, uint32_t telem_id):
         DataModule(can_id, telem_id, this->Size, 0, false)
@@ -105,6 +109,9 @@ namespace SolarGators::DataModules
   uint8_t OrionBMSRx1::getLowTempId() const {
     return low_temp_id_;
   }
+  void OrionBMSRx1::PostTelemetry() {
+
+  }
 
   // BMS Message 2
   OrionBMSRx2::OrionBMSRx2(uint32_t can_id, uint32_t telem_id):
@@ -147,6 +154,10 @@ namespace SolarGators::DataModules
     return pack_dcl_;
   }
 
+  void OrionBMSRx2::PostTelemetry() {
+
+  }
+
   // BMS Message 3
   OrionBMSRx3::OrionBMSRx3(uint32_t can_id, uint32_t telem_id):
         DataModule(can_id, telem_id, this->Size, 0, false)
@@ -179,6 +190,9 @@ namespace SolarGators::DataModules
 
   float OrionBMSRx3::getPackRes() const {
     return pack_res_ * 0.001;
+  }
+  void OrionBMSRx3::PostTelemetry() {
+
   }
 
   // BMS Message 4
@@ -350,6 +364,10 @@ namespace SolarGators::DataModules
     return pack_soc_ * 0.5;
   }
 
+  void OrionBMSRx4::PostTelemetry() {
+
+  }
+
   // BMS Message 5
   OrionBMSRx5::OrionBMSRx5(uint32_t can_id, uint32_t telem_id):
         DataModule(can_id, telem_id, this->Size, 0, false)
@@ -389,5 +407,8 @@ namespace SolarGators::DataModules
 
   float OrionBMSRx5::getMinPackVolt() const {
     return min_pack_volt_ * 0.1;
+  }
+  void OrionBMSRx5::PostTelemetry() {
+
   }
 }
