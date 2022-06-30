@@ -12,8 +12,8 @@
 namespace SolarGators {
 namespace DataModules {
 
-MitsubaRequest::MitsubaRequest(uint32_t id):
-    DataModule(id, Request_Size, true)
+MitsubaRequest::MitsubaRequest(uint32_t can_id):
+    DataModule(can_id, 0, Request_Size, 0, true)
 { }
 
 MitsubaRequest::~MitsubaRequest()
@@ -56,7 +56,7 @@ void MitsubaRequest::FromByteArray(uint8_t* buff)
 }
 
 MitsubaRx0::MitsubaRx0(uint32_t can_id, uint16_t telem_id):
-    DataModule(can_id, telem_id, Rx0_Size, true), battVoltage(0),battCurrent(0),
+    DataModule(can_id, telem_id, Rx0_Size, 0, true), battVoltage(0),battCurrent(0),
     battCurrentDir(false),motorCurrentPkAvg(0),FETtemp(0),
     motorRPM(0),PWMDuty(0),LeadAngle(0)
 { }
@@ -65,9 +65,9 @@ MitsubaRx0::~MitsubaRx0()
 { }
 
 // Getters
-uint16_t MitsubaRx0::GetBatteryVoltage() const
+float MitsubaRx0::GetBatteryVoltage() const
 {
-  return battVoltage;
+  return (static_cast<float>(battVoltage) / 2.0);   // 0.5v/LSB
 }
 uint16_t MitsubaRx0::GetBatteryCurrent() const
 {
@@ -75,27 +75,27 @@ uint16_t MitsubaRx0::GetBatteryCurrent() const
 }
 bool MitsubaRx0::GetBatteryCurrentDir() const
 {
-  return battCurrentDir;
+  return battCurrentDir;  // 0: Plus Current 1: Minus Current
 }
 uint16_t MitsubaRx0::GetMotorCurrentPkAvg() const
 {
   return motorCurrentPkAvg;
 }
-uint8_t MitsubaRx0::GetFetTemp() const
+uint16_t MitsubaRx0::GetFetTemp() const
 {
-  return FETtemp;
+  return FETtemp * 5; //5deg (C)/LSB
 }
 uint16_t MitsubaRx0::GetMotorRPM() const
 {
   return motorRPM;
 }
-uint16_t MitsubaRx0::GetPWMDuty() const
+float MitsubaRx0::GetPWMDuty() const
 {
-  return PWMDuty;
+  return static_cast<float>(PWMDuty) / 2.0; // 0.5%/LSB
 }
-uint16_t MitsubaRx0::GetLeadAngle() const
+float MitsubaRx0::GetLeadAngle() const
 {
-  return LeadAngle;
+  return static_cast<float>(LeadAngle) / 2.0; // 0.5deg/LSB
 }
 // Converter Functions
 void MitsubaRx0::ToByteArray(uint8_t* buff) const
@@ -176,7 +176,7 @@ MitsubaRx0::PostTelemetry(PythonScripts* scripts) {
 }
 
 MitsubaRx1::MitsubaRx1(uint32_t can_id, uint16_t telem_id):
-    DataModule(can_id, telem_id, Rx1_Size, true)
+    DataModule(can_id, telem_id, Rx1_Size, 0, true)
 { }
 
 MitsubaRx1::~MitsubaRx1()
@@ -185,35 +185,35 @@ MitsubaRx1::~MitsubaRx1()
 // Getters
 bool MitsubaRx1::GetPowerMode() const
 {
-  return powerMode;
+  return powerMode; // 0: Eco, 1: Power
 }
 bool MitsubaRx1::GetMcMode() const
 {
-  return MCmode;
+  return MCmode;  // 0: Current Mode, 1: PWM Mode
 }
-uint16_t MitsubaRx1::GetAcceleratorPosition() const
+float MitsubaRx1::GetAcceleratorPosition() const
 {
-  return AcceleratorPosition;
+  return AcceleratorPosition; // 0.5%/LSB
 }
-uint16_t MitsubaRx1::GetRegenVrPosition() const
+float MitsubaRx1::GetRegenVrPosition() const
 {
-  return regenVRposition;
+  return regenVRposition; // 0.5%/LSB
 }
 uint8_t MitsubaRx1::GetDigitSwitchPosition() const
 {
   return digitSWposition;
 }
-uint16_t MitsubaRx1::GetOutTargetVal() const
+float MitsubaRx1::GetOutTargetVal() const
 {
-  return outTargetVal;
+  return static_cast<float>(outTargetVal) / 2.0;  // 0.5A/LSB Current Mode, 0.5%/LSB PWM Mode
 }
 uint8_t MitsubaRx1::GetDriveActStat() const
 {
-  return driveActStat;
+  return driveActStat;  // 0: Stop, 1: RFU, 2: Forward Drive, 3: Reverse Drive
 }
 bool MitsubaRx1::GetRegenStat() const
 {
-  return regenStat;
+  return regenStat;   // 0: Drive, 1: Regeneration
 }
 // Converter Functions
 void MitsubaRx1::ToByteArray(uint8_t* buff) const
@@ -279,7 +279,7 @@ MitsubaRx1::PostTelemetry() {
 }
 
 MitsubaRx2::MitsubaRx2(uint32_t can_id, uint16_t telem_id):
-    DataModule(can_id, telem_id, Rx2_Size, true)
+    DataModule(can_id, telem_id, Rx2_Size, 0, true)
 { }
 
 MitsubaRx2::~MitsubaRx2()
