@@ -6,6 +6,8 @@
  */
 
 #include <Mitsuba.hpp>
+#include "inc/PythonHttp.hpp"
+#include "inc/PythonScripts.hpp"
 
 namespace SolarGators {
 namespace DataModules {
@@ -158,6 +160,21 @@ void MitsubaRx0::FromByteArray(uint8_t* buff)
   LeadAngle = static_cast<uint8_t>((buff[7] >> 1));
 }
 
+MitsubaRx0::PostTelemetry(PythonScripts* scripts) {
+  //Create Scripts
+  PythonHttp http;
+  http.addData("battVoltage", battVoltage);
+  http.addData("battCurrent", battCurrent);
+  http.addData("battCurrentDir", battCurrentDir);
+  http.addData("motorCurrentPkAvg", motorCurrentPkAvg);
+  http.addData("FETtemp", FETtemp);
+  http.addData("motorRPM", motorRPM);
+  http.addData("PWMDuty", PWMDuty);
+  http.addData("LeadAngle", LeadAngle);
+  scripts.send("mitsuba/rx0", http.getParameters());
+  http.flush();
+}
+
 MitsubaRx1::MitsubaRx1(uint32_t can_id, uint16_t telem_id):
     DataModule(can_id, telem_id, Rx1_Size, true)
 { }
@@ -244,6 +261,21 @@ void MitsubaRx1::FromByteArray(uint8_t* buff)
   driveActStat = static_cast<uint8_t>((buff[4] >> 4) & 3);
 
   regenStat = static_cast<bool>((buff[4] >> 6) & 1);
+}
+
+MitsubaRx1::PostTelemetry() {
+  //Create Scripts
+  PythonHttp http;
+  http.addData("powerMode", powerMode);
+  http.addData("MCmode", MCmode);
+  http.addData("AcceleratorPosition", AcceleratorPosition);
+  http.addData("regenVRposition", regenVRposition);
+  http.addData("digitSWposition", digitSWposition);
+  http.addData("outTargetVal", outTargetVal);
+  http.addData("driveActStat", driveActStat);
+  http.addData("regenStat", regenStat);
+  scripts.send("mitsuba/rx1", http.getParameters());
+  http.flush();
 }
 
 MitsubaRx2::MitsubaRx2(uint32_t can_id, uint16_t telem_id):
@@ -388,6 +420,32 @@ void MitsubaRx2::FromByteArray(uint8_t* buff)
   hallSensorOpen     = buff[3] & (1 << 3);
 
   overHeatLevel      = buff[4] & 0x3;
+}
+
+MitsubaRx2::PostTelemetry() {
+  //Create Scripts
+  PythonHttp http;
+  http.addData("adSensorError", adSensorError);
+  http.addData("motorCurrSensorUError", motorCurrSensorUError);
+  http.addData("motorCurrSensorWError", motorCurrSensorWError);
+  http.addData("fetThermError", fetThermError);
+  http.addData("battVoltSensorError", battVoltSensorError);
+  http.addData("battCurrSensorError", battCurrSensorError);
+  http.addData("battCurrSensorAdjError", battCurrSensorAdjError);
+  http.addData("motorCurrSensorAdjError", motorCurrSensorAdjError);
+  http.addData("accelPosError", accelPosError);
+  http.addData("contVoltSensorError", contVoltSensorError);
+  http.addData("powerSystemError", powerSystemError);
+  http.addData("overCurrError", overCurrError);
+  http.addData("overVoltError", overVoltError);
+  http.addData("overCurrLimit", overCurrLimit);
+  http.addData("motorSystemError", motorSystemError);
+  http.addData("motorLock", motorLock);
+  http.addData("hallSensorShort", hallSensorShort);
+  http.addData("hallSensorOpen", hallSensorOpen);
+  http.addData("overHeatLevel", overHeatLevel);
+  scripts.send("mitsuba/rx2", http.getParameters());
+  http.flush();
 }
 
 } /* namespace DataModules */

@@ -49,5 +49,9 @@ void Proton1::FromByteArray(uint8_t* buff)
   mpptTemperature = static_cast<float>(preMpptTemperature)/100;
 }
 
+Proton1::PostTelemetry() {
+
+}
+
 } /* namespace DataModules */
 } /* namespace SolarGators */

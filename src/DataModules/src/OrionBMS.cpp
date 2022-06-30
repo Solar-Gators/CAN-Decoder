@@ -66,4 +66,8 @@ namespace SolarGators::DataModules
     //TODO: figure out whether this should be 1000 or 100
     packSummedVoltage = static_cast<float>(prePCV)/1000;
   }
+
+  OrionBMS::PostTelemetry() {
+
+  }
 }

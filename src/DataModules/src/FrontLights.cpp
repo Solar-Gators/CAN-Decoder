@@ -36,5 +36,9 @@ uint16_t FrontLights::GetThrottle() const
   return throttle_;
 }
 
+FrontLights::PostTelemetry() {
+
+}
+
 } /* namespace DataModules */
 } /* namespace SolarGators */
