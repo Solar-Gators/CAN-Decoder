@@ -390,8 +390,4 @@ namespace SolarGators::DataModules
   float OrionBMSRx5::getMinPackVolt() const {
     return min_pack_volt_ * 0.1;
   }
-
-  OrionBMS::PostTelemetry() {
-
-  }
 }
