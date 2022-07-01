@@ -20,7 +20,9 @@ namespace SolarGators::DataModules
 
     void ToByteArray(uint8_t* buff) const;
     void FromByteArray(uint8_t* buff);
+    #ifdef IS_TELEMETRY
     void PostTelemetry(PythonScripts* scripts);
+    #endif
 
     float getAvgCellVolt() const;
     float getHighCellVolt() const;
@@ -43,7 +45,9 @@ namespace SolarGators::DataModules
 
     void ToByteArray(uint8_t* buff) const;
     void FromByteArray(uint8_t* buff);
+    #ifdef IS_TELEMETRY
     void PostTelemetry(PythonScripts* scripts);
+    #endif
 
     uint8_t getAvgTemp() const;
     uint8_t getConstantVal() const;
@@ -72,7 +76,9 @@ namespace SolarGators::DataModules
 
     void ToByteArray(uint8_t* buff) const;
     void FromByteArray(uint8_t* buff);
+    #ifdef IS_TELEMETRY
     void PostTelemetry(PythonScripts* scripts);
+    #endif
 
     uint16_t getConstantVal() const;
     uint16_t getPackCcl() const;
@@ -95,7 +101,9 @@ namespace SolarGators::DataModules
 
     void ToByteArray(uint8_t* buff) const;
     void FromByteArray(uint8_t* buff);
+    #ifdef IS_TELEMETRY
     void PostTelemetry(PythonScripts* scripts);
+    #endif
 
     float getHighCellRes() const;
     float getLowCellRes() const;
@@ -116,7 +124,9 @@ namespace SolarGators::DataModules
 
     void ToByteArray(uint8_t* buff) const;
     void FromByteArray(uint8_t* buff);
+    #ifdef IS_TELEMETRY
     void PostTelemetry(PythonScripts* scripts);
+    #endif
 
     bool isCanCommunicationFault() const;
     bool isCellBalancingStuckOffFault() const;
@@ -181,7 +191,9 @@ namespace SolarGators::DataModules
 
     void ToByteArray(uint8_t* buff) const;
     void FromByteArray(uint8_t* buff);
+    #ifdef IS_TELEMETRY
     void PostTelemetry(PythonScripts* scripts);
+    #endif
 
     uint16_t getMaxPackCcl() const;
     uint16_t getMaxPackDcl() const;

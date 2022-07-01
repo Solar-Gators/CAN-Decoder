@@ -158,7 +158,7 @@ void MitsubaRx0::FromByteArray(uint8_t* buff)
 
   LeadAngle = static_cast<uint8_t>((buff[7] >> 1));
 }
-
+#ifdef IS_TELEMETRY
 void MitsubaRx0::PostTelemetry(PythonScripts* scripts) {
   PythonHttp http;
   http.addData("battVoltage", battVoltage);
@@ -172,7 +172,7 @@ void MitsubaRx0::PostTelemetry(PythonScripts* scripts) {
   scripts->send("mitsuba/rx0", http.getParameters());
   http.flush();
 }
-
+#endif
 MitsubaRx1::MitsubaRx1(uint32_t can_id, uint16_t telem_id):
     DataModule(can_id, telem_id, Rx1_Size, 0, true)
 { }
@@ -260,7 +260,7 @@ void MitsubaRx1::FromByteArray(uint8_t* buff)
 
   regenStat = static_cast<bool>((buff[4] >> 6) & 1);
 }
-
+#ifdef IS_TELEMETRY
 void MitsubaRx1::PostTelemetry(PythonScripts* scripts) {
   //Create Scripts
   PythonHttp http;
@@ -275,7 +275,7 @@ void MitsubaRx1::PostTelemetry(PythonScripts* scripts) {
   scripts->send("mitsuba/rx1", http.getParameters());
   http.flush();
 }
-
+#endif
 MitsubaRx2::MitsubaRx2(uint32_t can_id, uint16_t telem_id):
     DataModule(can_id, telem_id, Rx2_Size, 0, true)
 { }
@@ -419,7 +419,7 @@ void MitsubaRx2::FromByteArray(uint8_t* buff)
 
   overHeatLevel      = buff[4] & 0x3;
 }
-
+#ifdef IS_TELEMETRY
 void MitsubaRx2::PostTelemetry(PythonScripts* scripts) {
   //Create Scripts
   PythonHttp http;
@@ -445,6 +445,6 @@ void MitsubaRx2::PostTelemetry(PythonScripts* scripts) {
   scripts->send("mitsuba/rx2", http.getParameters());
   http.flush();
 }
-
+#endif
 } /* namespace DataModules */
 } /* namespace SolarGators */

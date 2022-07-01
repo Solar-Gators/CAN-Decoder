@@ -36,9 +36,11 @@ uint16_t FrontLights::GetThrottle() const
   return throttle_;
 }
 
+#ifdef IS_TELEMETRY
 void FrontLights::PostTelemetry(PythonScripts* scripts) {
 
 }
+#endif
 
 } /* namespace DataModules */
 } /* namespace SolarGators */

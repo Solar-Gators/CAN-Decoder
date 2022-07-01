@@ -25,7 +25,9 @@ public:
   // Converter Functions
   void ToByteArray(uint8_t* buff) const;
   void FromByteArray(uint8_t* buff);
-  void PostTelemetry(PythonScripts* scripts);
+  #ifdef IS_TELEMETRY
+void PostTelemetry(PythonScripts* scripts);
+#endif
 
 protected:
   float arrayVoltage;

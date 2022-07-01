@@ -19,7 +19,9 @@ public:
   virtual ~FrontLights();
   uint16_t GetBreak() const;
   uint16_t GetThrottle() const;
+  #ifdef IS_TELEMETRY
   void PostTelemetry(PythonScripts* scripts);
+  #endif
 
 protected:
   uint16_t throttle_;

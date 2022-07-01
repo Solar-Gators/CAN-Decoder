@@ -29,7 +29,9 @@ namespace SolarGators::DataModules
     uint8_t GetCruiseSpeed() const;
     void ToByteArray(uint8_t* buff) const;
     void FromByteArray(uint8_t* buff);
-    void PostTelemetry(PythonScripts* scripts);
+    #ifdef IS_TELEMETRY
+void PostTelemetry(PythonScripts* scripts);
+#endif
     static constexpr uint8_t Max_Cruise_Speed_ = 60;
     static constexpr uint8_t Min_Cruise_Speed_ = 0;
   protected:

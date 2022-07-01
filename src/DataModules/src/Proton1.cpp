@@ -64,10 +64,11 @@ float Proton1::getBatteryVoltage() const {
 float Proton1::getMpptTemperature() const {
   return mpptTemperature;
 }
-
+#ifdef IS_TELEMETRY
 void Proton1::PostTelemetry(PythonScripts* scripts) {
 
-  }
+}
+#endif
 
 } /* namespace DataModules */
 } /* namespace SolarGators */

@@ -49,7 +49,7 @@ namespace SolarGators::DataModules
   float OrionBMSRx0::getPackSumVolt() const {
     return pack_sum_volt_ * 0.01;
   }
-
+#ifdef IS_TELEMETRY
   void OrionBMSRx0::PostTelemetry(PythonScripts* scripts) {
     PythonHttp http;
     http.addData("low_cell_volt_", low_cell_volt_);
@@ -59,7 +59,7 @@ namespace SolarGators::DataModules
     scripts->send("bms/rx0", http.getParameters());
     http.flush();
   }
-
+#endif
   // BMS Message 1
   OrionBMSRx1::OrionBMSRx1(uint32_t can_id, uint32_t telem_id):
         DataModule(can_id, telem_id, this->Size, 0, false)
@@ -115,6 +115,7 @@ namespace SolarGators::DataModules
   uint8_t OrionBMSRx1::getLowTempId() const {
     return low_temp_id_;
   }
+#ifdef IS_TELEMETRY
   void OrionBMSRx1::PostTelemetry(PythonScripts* scripts) {
     PythonHttp http;
     http.addData("high_temp_", high_temp_);
@@ -127,7 +128,7 @@ namespace SolarGators::DataModules
     scripts->send("bms/rx1", http.getParameters());
     http.flush();
   }
-
+#endif
   // BMS Message 2
   OrionBMSRx2::OrionBMSRx2(uint32_t can_id, uint32_t telem_id):
         DataModule(can_id, telem_id, this->Size, 0, false)
@@ -168,7 +169,7 @@ namespace SolarGators::DataModules
   uint16_t OrionBMSRx2::getPackDcl() const {
     return pack_dcl_;
   }
-
+#ifdef IS_TELEMETRY
   void OrionBMSRx2::PostTelemetry(PythonScripts* scripts) {
     PythonHttp http;
     http.addData("pack_dcl_", pack_dcl_);
@@ -178,7 +179,7 @@ namespace SolarGators::DataModules
     scripts->send("bms/rx2", http.getParameters());
     http.flush();
   }
-
+#endif
   // BMS Message 3
   OrionBMSRx3::OrionBMSRx3(uint32_t can_id, uint32_t telem_id):
         DataModule(can_id, telem_id, this->Size, 0, false)
@@ -212,6 +213,7 @@ namespace SolarGators::DataModules
   float OrionBMSRx3::getPackRes() const {
     return pack_res_ * 0.001;
   }
+#ifdef IS_TELEMETRY
   void OrionBMSRx3::PostTelemetry(PythonScripts* scripts) {
     PythonHttp http;
     http.addData("low_cell_res_", low_cell_res_);
@@ -220,7 +222,7 @@ namespace SolarGators::DataModules
     scripts->send("bms/rx3", http.getParameters());
     http.flush();
   }
-
+#endif
   // BMS Message 4
   OrionBMSRx4::OrionBMSRx4(uint32_t can_id, uint32_t telem_id):
         DataModule(can_id, telem_id, this->Size, 0, false)
@@ -389,7 +391,7 @@ namespace SolarGators::DataModules
   float OrionBMSRx4::getPackSoc() const {
     return pack_soc_ * 0.5;
   }
-
+#ifdef IS_TELEMETRY
   void OrionBMSRx4::PostTelemetry(PythonScripts* scripts) {
     PythonHttp http;
     http.addData("internal_cell_communication_fault_", internal_cell_communication_fault_);
@@ -420,7 +422,7 @@ namespace SolarGators::DataModules
     scripts->send("bms/rx4", http.getParameters());
     http.flush();
   }
-
+#endif
   // BMS Message 5
   OrionBMSRx5::OrionBMSRx5(uint32_t can_id, uint32_t telem_id):
         DataModule(can_id, telem_id, this->Size, 0, false)
@@ -461,6 +463,7 @@ namespace SolarGators::DataModules
   float OrionBMSRx5::getMinPackVolt() const {
     return min_pack_volt_ * 0.1;
   }
+#ifdef IS_TELEMETRY
   void OrionBMSRx5::PostTelemetry(PythonScripts* scripts) {
     PythonHttp http;
     http.addData("max_pack_dcl_", max_pack_dcl_);
@@ -470,4 +473,5 @@ namespace SolarGators::DataModules
     scripts->send("bms/rx5", http.getParameters());
     http.flush();
   }
+#endif
 }
