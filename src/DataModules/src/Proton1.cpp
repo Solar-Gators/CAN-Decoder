@@ -65,5 +65,9 @@ float Proton1::getMpptTemperature() const {
   return mpptTemperature;
 }
 
+void Proton1::PostTelemetry(PythonScripts* scripts) {
+
+  }
+
 } /* namespace DataModules */
 } /* namespace SolarGators */

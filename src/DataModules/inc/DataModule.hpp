@@ -9,6 +9,8 @@
 #define SOLARGATORSBSP_DATAMODULES_INC_DATAMODULE_HPP_
 
 #include <cstdint>
+#include <PythonHttp.hpp>
+#include <PythonScripts.hpp>
 
 namespace SolarGators {
 namespace DataModules {
@@ -22,7 +24,7 @@ public:
   // All data modules must define this so that we can parse the can messages
   virtual void ToByteArray(uint8_t* buff) const = 0;
   virtual void FromByteArray(uint8_t* buff) = 0;
-  virtual void PostTelemetry();
+  virtual void PostTelemetry(PythonScripts* scripts) = 0;
   // The can bus ID for the data module
   const uint32_t can_id_;
   // ID for transmitting the data module to the pit

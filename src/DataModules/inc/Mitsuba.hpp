@@ -51,6 +51,7 @@ public:
   // Converter Functions
   void ToByteArray(uint8_t* buff) const;
   void FromByteArray(uint8_t* buff);
+  void PostTelemetry(PythonScripts* scripts);
   static constexpr uint8_t Rx0_Size = 8;
 protected:
   uint16_t battVoltage;
@@ -93,6 +94,7 @@ public:
   // Converter Functions
   void ToByteArray(uint8_t* buff) const;
   void FromByteArray(uint8_t* buff);
+  void PostTelemetry(PythonScripts* scripts);
   static constexpr uint8_t Rx1_Size = 5;
 protected:
   bool   powerMode;
@@ -133,6 +135,7 @@ public:
   // Converter Functions
   void ToByteArray(uint8_t* buff) const;
   void FromByteArray(uint8_t* buff);
+  void PostTelemetry(PythonScripts* scripts);
   static constexpr uint8_t Rx2_Size = 5;
 protected:
   bool adSensorError;

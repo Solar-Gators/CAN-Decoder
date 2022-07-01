@@ -18,13 +18,14 @@ public:
   Proton1(uint32_t id);
   virtual ~Proton1();
   // Getters
-  float getArrayVoltage();
-  float getArrayCurrent();
-  float getBatteryVoltage();
-  float getMpptTemperature();
+  float getArrayVoltage() const;
+  float getArrayCurrent() const;
+  float getBatteryVoltage() const;
+  float getMpptTemperature() const;
   // Converter Functions
   void ToByteArray(uint8_t* buff) const;
   void FromByteArray(uint8_t* buff);
+  void PostTelemetry(PythonScripts* scripts);
 
 protected:
   float arrayVoltage;

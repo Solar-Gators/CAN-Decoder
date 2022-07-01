@@ -50,8 +50,14 @@ namespace SolarGators::DataModules
     return pack_sum_volt_ * 0.01;
   }
 
-  void OrionBMSRx0::PostTelemetry() {
-
+  void OrionBMSRx0::PostTelemetry(PythonScripts* scripts) {
+    PythonHttp http;
+    http.addData("low_cell_volt_", low_cell_volt_);
+    http.addData("high_cell_volt_", high_cell_volt_);
+    http.addData("avg_cell_volt_", avg_cell_volt_);
+    http.addData("pack_sum_volt_", pack_sum_volt_);
+    scripts->send("bms/rx0", http.getParameters());
+    http.flush();
   }
 
   // BMS Message 1
@@ -109,8 +115,17 @@ namespace SolarGators::DataModules
   uint8_t OrionBMSRx1::getLowTempId() const {
     return low_temp_id_;
   }
-  void OrionBMSRx1::PostTelemetry() {
-
+  void OrionBMSRx1::PostTelemetry(PythonScripts* scripts) {
+    PythonHttp http;
+    http.addData("high_temp_", high_temp_);
+    http.addData("high_temp_id_", high_temp_id_);
+    http.addData("low_temp_", low_temp_);
+    http.addData("low_temp_id_", low_temp_id_);
+    http.addData("avg_temp_", avg_temp_);
+    http.addData("internal_temp_", internal_temp_);
+    http.addData("constant_val_", constant_val_);
+    scripts->send("bms/rx1", http.getParameters());
+    http.flush();
   }
 
   // BMS Message 2
@@ -154,8 +169,14 @@ namespace SolarGators::DataModules
     return pack_dcl_;
   }
 
-  void OrionBMSRx2::PostTelemetry() {
-
+  void OrionBMSRx2::PostTelemetry(PythonScripts* scripts) {
+    PythonHttp http;
+    http.addData("pack_dcl_", pack_dcl_);
+    http.addData("pack_ccl_", pack_ccl_);
+    http.addData("pack_current_", pack_current_);
+    http.addData("constant_val_", constant_val_);
+    scripts->send("bms/rx2", http.getParameters());
+    http.flush();
   }
 
   // BMS Message 3
@@ -191,8 +212,13 @@ namespace SolarGators::DataModules
   float OrionBMSRx3::getPackRes() const {
     return pack_res_ * 0.001;
   }
-  void OrionBMSRx3::PostTelemetry() {
-
+  void OrionBMSRx3::PostTelemetry(PythonScripts* scripts) {
+    PythonHttp http;
+    http.addData("low_cell_res_", low_cell_res_);
+    http.addData("high_cell_res_", high_cell_res_);
+    http.addData("pack_res_", pack_res_);
+    scripts->send("bms/rx3", http.getParameters());
+    http.flush();
   }
 
   // BMS Message 4
@@ -364,8 +390,35 @@ namespace SolarGators::DataModules
     return pack_soc_ * 0.5;
   }
 
-  void OrionBMSRx4::PostTelemetry() {
-
+  void OrionBMSRx4::PostTelemetry(PythonScripts* scripts) {
+    PythonHttp http;
+    http.addData("internal_cell_communication_fault_", internal_cell_communication_fault_);
+    http.addData("cell_balancing_stuck_off_fault_", cell_balancing_stuck_off_fault_);
+    http.addData("weak_cell_fault_", weak_cell_fault_);
+    http.addData("low_cell_voltage_fault_", low_cell_voltage_fault_);
+    http.addData("cell_open_wiring_fault_", cell_open_wiring_fault_);
+    http.addData("current_sensor_fault_", current_sensor_fault_);
+    http.addData("cell_voltage_over_5v_fault_", cell_voltage_over_5v_fault_);
+    http.addData("cell_bank_fault_", cell_bank_fault_);
+    http.addData("weak_pack_fault_", weak_pack_fault_);
+    http.addData("fan_monitor_fault_", fan_monitor_fault_);
+    http.addData("thermistor_fault_", thermistor_fault_);
+    http.addData("can_communication_fault_", can_communication_fault_);
+    http.addData("redundant_power_supply_fault_", redundant_power_supply_fault_);
+    http.addData("high_voltage_isolation_fault_", high_voltage_isolation_fault_);
+    http.addData("invalid_input_supply_voltage_fault_", invalid_input_supply_voltage_fault_);
+    http.addData("chargeenable_relay_fault_", chargeenable_relay_fault_);
+    http.addData("dischargeenable_relay_fault_", dischargeenable_relay_fault_);
+    http.addData("charger_safety_relay_fault_", charger_safety_relay_fault_);
+    http.addData("internal_hardware_fault_", internal_hardware_fault_);
+    http.addData("internal_heatsink_thermistor_fault_", internal_heatsink_thermistor_fault_);
+    http.addData("internal_logic_fault_", internal_logic_fault_);
+    http.addData("highest_cell_voltage_too_high_fault_", highest_cell_voltage_too_high_fault_);
+    http.addData("lowest_cell_voltage_too_low_fault_", lowest_cell_voltage_too_low_fault_);
+    http.addData("pack_too_hot_fault_", pack_too_hot_fault_);
+    http.addData("pack_soc_", pack_soc_);
+    scripts->send("bms/rx4", http.getParameters());
+    http.flush();
   }
 
   // BMS Message 5
@@ -408,7 +461,13 @@ namespace SolarGators::DataModules
   float OrionBMSRx5::getMinPackVolt() const {
     return min_pack_volt_ * 0.1;
   }
-  void OrionBMSRx5::PostTelemetry() {
-
+  void OrionBMSRx5::PostTelemetry(PythonScripts* scripts) {
+    PythonHttp http;
+    http.addData("max_pack_dcl_", max_pack_dcl_);
+    http.addData("max_pack_ccl_", max_pack_ccl_);
+    http.addData("max_pack_volt_", max_pack_volt_);
+    http.addData("min_pack_volt_", min_pack_volt_);
+    scripts->send("bms/rx5", http.getParameters());
+    http.flush();
   }
 }

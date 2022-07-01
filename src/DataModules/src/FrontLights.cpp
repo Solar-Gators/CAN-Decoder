@@ -36,7 +36,7 @@ uint16_t FrontLights::GetThrottle() const
   return throttle_;
 }
 
-FrontLights::PostTelemetry() {
+void FrontLights::PostTelemetry(PythonScripts* scripts) {
 
 }
 

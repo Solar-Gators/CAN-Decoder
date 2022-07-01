@@ -97,7 +97,7 @@ namespace SolarGators::DataModules
     cruise_speed_   = buff[2];
   }
 
-  Steering::PostTelemetry() {
+  void Steering::PostTelemetry(PythonScripts* scripts) {
 
   }
 }

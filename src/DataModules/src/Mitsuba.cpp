@@ -6,8 +6,7 @@
  */
 
 #include <Mitsuba.hpp>
-#include "inc/PythonHttp.hpp"
-#include "inc/PythonScripts.hpp"
+
 
 namespace SolarGators {
 namespace DataModules {
@@ -160,8 +159,7 @@ void MitsubaRx0::FromByteArray(uint8_t* buff)
   LeadAngle = static_cast<uint8_t>((buff[7] >> 1));
 }
 
-MitsubaRx0::PostTelemetry(PythonScripts* scripts) {
-  //Create Scripts
+void MitsubaRx0::PostTelemetry(PythonScripts* scripts) {
   PythonHttp http;
   http.addData("battVoltage", battVoltage);
   http.addData("battCurrent", battCurrent);
@@ -171,7 +169,7 @@ MitsubaRx0::PostTelemetry(PythonScripts* scripts) {
   http.addData("motorRPM", motorRPM);
   http.addData("PWMDuty", PWMDuty);
   http.addData("LeadAngle", LeadAngle);
-  scripts.send("mitsuba/rx0", http.getParameters());
+  scripts->send("mitsuba/rx0", http.getParameters());
   http.flush();
 }
 
@@ -263,7 +261,7 @@ void MitsubaRx1::FromByteArray(uint8_t* buff)
   regenStat = static_cast<bool>((buff[4] >> 6) & 1);
 }
 
-MitsubaRx1::PostTelemetry() {
+void MitsubaRx1::PostTelemetry(PythonScripts* scripts) {
   //Create Scripts
   PythonHttp http;
   http.addData("powerMode", powerMode);
@@ -274,7 +272,7 @@ MitsubaRx1::PostTelemetry() {
   http.addData("outTargetVal", outTargetVal);
   http.addData("driveActStat", driveActStat);
   http.addData("regenStat", regenStat);
-  scripts.send("mitsuba/rx1", http.getParameters());
+  scripts->send("mitsuba/rx1", http.getParameters());
   http.flush();
 }
 
@@ -422,7 +420,7 @@ void MitsubaRx2::FromByteArray(uint8_t* buff)
   overHeatLevel      = buff[4] & 0x3;
 }
 
-MitsubaRx2::PostTelemetry() {
+void MitsubaRx2::PostTelemetry(PythonScripts* scripts) {
   //Create Scripts
   PythonHttp http;
   http.addData("adSensorError", adSensorError);
@@ -444,7 +442,7 @@ MitsubaRx2::PostTelemetry() {
   http.addData("hallSensorShort", hallSensorShort);
   http.addData("hallSensorOpen", hallSensorOpen);
   http.addData("overHeatLevel", overHeatLevel);
-  scripts.send("mitsuba/rx2", http.getParameters());
+  scripts->send("mitsuba/rx2", http.getParameters());
   http.flush();
 }
 
