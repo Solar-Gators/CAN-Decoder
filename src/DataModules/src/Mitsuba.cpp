@@ -161,6 +161,7 @@ void MitsubaRx0::FromByteArray(uint8_t* buff)
 #ifdef IS_TELEMETRY
 void MitsubaRx0::PostTelemetry(PythonScripts* scripts) {
   PythonHttp http;
+  http.init();
   http.addData("battVoltage", battVoltage);
   http.addData("battCurrent", battCurrent);
   http.addData("battCurrentDir", battCurrentDir);
@@ -264,6 +265,7 @@ void MitsubaRx1::FromByteArray(uint8_t* buff)
 void MitsubaRx1::PostTelemetry(PythonScripts* scripts) {
   //Create Scripts
   PythonHttp http;
+  http.init();
   http.addData("powerMode", powerMode);
   http.addData("MCmode", MCmode);
   http.addData("AcceleratorPosition", AcceleratorPosition);
@@ -423,6 +425,7 @@ void MitsubaRx2::FromByteArray(uint8_t* buff)
 void MitsubaRx2::PostTelemetry(PythonScripts* scripts) {
   //Create Scripts
   PythonHttp http;
+  http.init();
   http.addData("adSensorError", adSensorError);
   http.addData("motorCurrSensorUError", motorCurrSensorUError);
   http.addData("motorCurrSensorWError", motorCurrSensorWError);

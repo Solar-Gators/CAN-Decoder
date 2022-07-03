@@ -71,7 +71,6 @@ namespace SolarGators::DataModules
   }
   void Steering::ToByteArray(uint8_t* buff) const
   {
-    memset(buff, 0, sizeof(buff));
     buff[0] |= (static_cast<uint8_t>(left_turn_)     << 0);
     buff[0] |= (static_cast<uint8_t>(right_turn_)    << 1);
     buff[0] |= (static_cast<uint8_t>(hazards_)       << 2);

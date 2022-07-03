@@ -52,6 +52,7 @@ namespace SolarGators::DataModules
 #ifdef IS_TELEMETRY
   void OrionBMSRx0::PostTelemetry(PythonScripts* scripts) {
     PythonHttp http;
+    http.init();
     http.addData("low_cell_volt_", low_cell_volt_);
     http.addData("high_cell_volt_", high_cell_volt_);
     http.addData("avg_cell_volt_", avg_cell_volt_);
@@ -118,6 +119,7 @@ namespace SolarGators::DataModules
 #ifdef IS_TELEMETRY
   void OrionBMSRx1::PostTelemetry(PythonScripts* scripts) {
     PythonHttp http;
+    http.init();
     http.addData("high_temp_", high_temp_);
     http.addData("high_temp_id_", high_temp_id_);
     http.addData("low_temp_", low_temp_);
@@ -172,6 +174,7 @@ namespace SolarGators::DataModules
 #ifdef IS_TELEMETRY
   void OrionBMSRx2::PostTelemetry(PythonScripts* scripts) {
     PythonHttp http;
+    http.init();
     http.addData("pack_dcl_", pack_dcl_);
     http.addData("pack_ccl_", pack_ccl_);
     http.addData("pack_current_", pack_current_);
@@ -216,6 +219,7 @@ namespace SolarGators::DataModules
 #ifdef IS_TELEMETRY
   void OrionBMSRx3::PostTelemetry(PythonScripts* scripts) {
     PythonHttp http;
+    http.init();
     http.addData("low_cell_res_", low_cell_res_);
     http.addData("high_cell_res_", high_cell_res_);
     http.addData("pack_res_", pack_res_);
@@ -394,6 +398,7 @@ namespace SolarGators::DataModules
 #ifdef IS_TELEMETRY
   void OrionBMSRx4::PostTelemetry(PythonScripts* scripts) {
     PythonHttp http;
+    http.init();
     http.addData("internal_cell_communication_fault_", internal_cell_communication_fault_);
     http.addData("cell_balancing_stuck_off_fault_", cell_balancing_stuck_off_fault_);
     http.addData("weak_cell_fault_", weak_cell_fault_);
@@ -466,6 +471,7 @@ namespace SolarGators::DataModules
 #ifdef IS_TELEMETRY
   void OrionBMSRx5::PostTelemetry(PythonScripts* scripts) {
     PythonHttp http;
+    http.init();
     http.addData("max_pack_dcl_", max_pack_dcl_);
     http.addData("max_pack_ccl_", max_pack_ccl_);
     http.addData("max_pack_volt_", max_pack_volt_);
