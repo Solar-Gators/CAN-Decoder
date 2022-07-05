@@ -162,14 +162,14 @@ void MitsubaRx0::FromByteArray(uint8_t* buff)
 void MitsubaRx0::PostTelemetry(PythonScripts* scripts) {
   PythonHttp http;
   http.init();
-  http.addData("battVoltage", battVoltage);
-  http.addData("battCurrent", battCurrent);
-  http.addData("battCurrentDir", battCurrentDir);
-  http.addData("motorCurrentPkAvg", motorCurrentPkAvg);
-  http.addData("FETtemp", FETtemp);
-  http.addData("motorRPM", motorRPM);
-  http.addData("PWMDuty", PWMDuty);
-  http.addData("LeadAngle", LeadAngle);
+  http.addData("battVoltage", GetBatteryVoltage());
+  http.addData("battCurrent", GetBatteryCurrent());
+  http.addData("battCurrentDir", GetBatteryCurrentDir());
+  http.addData("motorCurrentPkAvg", GetMotorCurrentPkAvg());
+  http.addData("FETtemp", GetFetTemp());
+  http.addData("motorRPM", GetMotorRPM());
+  http.addData("PWMDuty", GetPWMDuty());
+  http.addData("LeadAngle", GetLeadAngle());
   scripts->send("mitsuba/rx0", http.getParameters());
   http.flush();
 }
@@ -266,14 +266,14 @@ void MitsubaRx1::PostTelemetry(PythonScripts* scripts) {
   //Create Scripts
   PythonHttp http;
   http.init();
-  http.addData("powerMode", powerMode);
-  http.addData("MCmode", MCmode);
-  http.addData("AcceleratorPosition", AcceleratorPosition);
-  http.addData("regenVRposition", regenVRposition);
-  http.addData("digitSWposition", digitSWposition);
-  http.addData("outTargetVal", outTargetVal);
-  http.addData("driveActStat", driveActStat);
-  http.addData("regenStat", regenStat);
+  http.addData("powerMode", GetPowerMode());
+  http.addData("MCmode", GetMcMode());
+  http.addData("AcceleratorPosition", GetAcceleratorPosition());
+  http.addData("regenVRposition", GetRegenVrPosition());
+  http.addData("digitSWposition", GetDigitSwitchPosition());
+  http.addData("outTargetVal", GetOutTargetVal());
+  http.addData("driveActStat", GetDriveActStat());
+  http.addData("regenStat", GetRegenStat());
   scripts->send("mitsuba/rx1", http.getParameters());
   http.flush();
 }
