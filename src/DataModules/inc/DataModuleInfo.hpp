@@ -41,6 +41,9 @@ static constexpr uint16_t FRONT_LIGHTS_ID = 2049;
 // Rear Lights
 static constexpr uint16_t REAR_LIGHTS_ID = 2050;
 
+//power board, might need to make lower pri
+static constexpr uint16_t POWER_BOARD_ID = 0x235;
+
 }
 
 
