@@ -42,19 +42,19 @@ uint8_t PowerBoard::GetPowerSource()
 	return PowerSource_;
 }
 
-void setSupBatVoltage(uint16_t SupBatVoltage){
+void PowerBoard::setSupBatVoltage(uint16_t SupBatVoltage){
 	SupBatVoltage_ = SupBatVoltage;
 }
 
-void setSupBatPower(uint16_t SupBatPower){
+void PowerBoard::setSupBatPower(uint16_t SupBatPower){
 	SupBatPower_ = SupBatPower;
 }
 
-void setMainBatPower(uint16_t MainBatPower){
+void PowerBoard::setMainBatPower(uint16_t MainBatPower){
 	MainBatPower_ = MainBatPower;
 }
 
-void setPowerSource(uint8_t PowerSource){
+void PowerBoard::setPowerSource(uint8_t PowerSource){
 	PowerSource_ = PowerSource;
 }
 
