@@ -20,6 +20,10 @@ public:
   float GetSupBatVoltage();
   float GetSupBatPower();
   float GetMainBatPower();
+  void setSupBatVoltage(uint16_t SupBatVoltage);
+  void setSupBatPower(uint16_t SupBatPower);
+  void setMainBatPower(uint16_t MainBatPower);
+  void setPowerSource(uint8_t PowerSource);
   uint8_t GetPowerSource();
   // CAN Functions
   void ToByteArray(uint8_t* buff) const;
