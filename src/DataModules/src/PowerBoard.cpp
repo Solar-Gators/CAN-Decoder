@@ -10,7 +10,7 @@
 namespace SolarGators {
 namespace DataModules {
 
-
+//Data for power board information
 PowerBoard::PowerBoard(uint32_t can_id, uint32_t telem_id):
         DataModule(can_id, 0, this->Size),
         SupBatVoltage_(0),
