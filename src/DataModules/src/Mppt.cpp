@@ -4,50 +4,43 @@
  *  Created on: Apr 17, 2023
  *      Author: Jack W
  */
-#include <Mppt.hpp>
+#include "Mppt.hpp"
 #include <string.h>
-
-namespace {
-	static constexpr uint32_t SIZE = 8;
-}
 
 namespace SolarGators::DataModules
 {
+uint8_t hold_1[sizeof(float)];
+uint8_t hold_2[sizeof(float)];
+
 Mpptx0::Mpptx0(uint32_t can_id):
-		DataModule(can_id, 0, SIZE),
+		DataModule(can_id, 0, 8),
 		inputVoltage(0),
 		inputCurrent(0) // unsure if i need to do this, orionBMS doesnt but steering does
 		{}
 
 void Mpptx0::ToByteArray(uint8_t* buff) const
 {
-uint8_t hold_Volt[sizeof(float)];
-uint8_t hold_Cur[sizeof(float)];
-
-memcpy(hold_Volt, &inputVoltage, sizeof(float));
-memcpy(hold_Cur, &inputCurrent, sizeof(float));
+memcpy(hold_1, &inputVoltage, sizeof(float));
+memcpy(hold_2, &inputCurrent, sizeof(float));
 
 	for (int i=0;i<=3;i++){
-		buff[i] = hold_Volt[i];
+		buff[i] = hold_1[i];
 	}
 	for (int i=4;i<=7;i++){
-		buff[i] = hold_Cur[i];
+		buff[i] = hold_2[i];
 	}
 }
 
 void Mpptx0::FromByteArray(uint8_t* buff)
 {
-uint8_t hold_Volt[sizeof(float)];
-uint8_t hold_Cur[sizeof(float)];
-
 	for(int i=0;i<=3;i++){
-		hold_Volt[i] = buff[i];
+		hold_1[i] = buff[i];
 	}
 	for(int i=4;i<=7;i++){
-		hold_Cur[i] = buff[i];
+		hold_2[i] = buff[i];
 	}
-memcpy(&inputVoltage, hold_Volt, sizeof(float));
-memcpy(&inputCurrent, hold_Cur, sizeof(float));
+memcpy(&inputVoltage, hold_1, sizeof(float));
+memcpy(&inputCurrent, hold_1, sizeof(float));
 }
 
 float Mpptx0::getInputVoltage() const {
@@ -59,40 +52,34 @@ float Mpptx0::getInputCurrent() const {
 }
 
 Mpptx1::Mpptx1(uint32_t can_id): // INCREMENT BY 1 FROM MPPTx0
-		DataModule(can_id, 0, SIZE),
+		DataModule(can_id, 0, 8),
 		outputVoltage(0),
 		outputCurrent(0) // unsure if i need to do this, orionBMS doesnt but steering does
 {}
 
 void Mpptx1::ToByteArray(uint8_t* buff) const
 {
-uint8_t hold_Volt[sizeof(float)];
-uint8_t hold_Cur[sizeof(float)];
-
-memcpy(hold_Volt, &outputVoltage, sizeof(float));
-memcpy(hold_Cur, &outputCurrent, sizeof(float));
+memcpy(hold_1, &outputVoltage, sizeof(float));
+memcpy(hold_2, &outputCurrent, sizeof(float));
 
 	for (int i=0;i<=3;i++){
-		buff[i] = hold_Volt[i];
+		buff[i] = hold_1[i];
 	}
 	for (int i=4;i<=7;i++){
-		buff[i] = hold_Cur[i];
+		buff[i] = hold_2[i];
 	}
 }
 
 void Mpptx1::FromByteArray(uint8_t* buff)
 {
-uint8_t hold_Volt[sizeof(float)];
-uint8_t hold_Cur[sizeof(float)];
-
 	for(int i=0;i<=3;i++){
-		hold_Volt[i] = buff[i];
+		hold_1[i] = buff[i];
 	}
 	for(int i=4;i<=7;i++){
-		hold_Cur[i] = buff[i];
+		hold_2[i] = buff[i];
 	}
-memcpy(&outputVoltage, hold_Volt, sizeof(float));
-memcpy(&outputCurrent, hold_Cur, sizeof(float));
+memcpy(&outputVoltage, hold_1, sizeof(float));
+memcpy(&outputCurrent, hold_2, sizeof(float));
 }
 
 float Mpptx1::getOutputVoltage() const {
@@ -104,40 +91,37 @@ float Mpptx1::getOutputCurrent() const {
 }
 
 Mpptx2::Mpptx2(uint32_t can_id): // INCREMENT BY 2 FROM MPPTx0
-	DataModule(can_id, 0, SIZE),
+	DataModule(can_id, 0, 8),
 	mosfetTemp(0),
 	controllerTemp(0) // unsure if i need to do this, orionBMS doesnt but steering does
 {}
 
 void Mpptx2::ToByteArray(uint8_t* buff) const
 {
-uint8_t hold_Mos[sizeof(float)];
-uint8_t hold_Con[sizeof(float)];
+uint8_t hold_1[sizeof(float)];
+uint8_t hold_2[sizeof(float)];
 
-memcpy(hold_Mos, &mosfetTemp, sizeof(float));
-memcpy(hold_Con, &controllerTemp, sizeof(float));
+memcpy(hold_1, &mosfetTemp, sizeof(float));
+memcpy(hold_2, &controllerTemp, sizeof(float));
 
 	for (int i=0;i<=3;i++){
-		buff[i] = hold_Mos[i];
+		buff[i] = hold_1[i];
 	}
 	for (int i=4;i<=7;i++){
-		buff[i] = hold_Con[i];
+		buff[i] = hold_2[i];
 	}
 }
 
 void Mpptx2::FromByteArray(uint8_t* buff)
 {
-uint8_t hold_Mos[sizeof(float)];
-uint8_t hold_Con[sizeof(float)];
-
 	for(int i=0;i<=3;i++){
-		hold_Mos[i] = buff[i];
+		hold_1[i] = buff[i];
 	}
 	for(int i=4;i<=7;i++){
-		hold_Con[i] = buff[i];
+		hold_2[i] = buff[i];
 	}
-memcpy(&mosfetTemp, hold_Mos, sizeof(float));
-memcpy(&controllerTemp, hold_Con, sizeof(float));
+memcpy(&mosfetTemp, hold_1, sizeof(float));
+memcpy(&controllerTemp, hold_2, sizeof(float));
 }
 
 float Mpptx2::getMosfetTemp() const {
@@ -149,40 +133,34 @@ float Mpptx2::getControllerTemp() const {
 }
 
 Mpptx3::Mpptx3(uint32_t can_id): // INCREMENT BY 3 FROM MPPTx0
-	DataModule(can_id, 0, SIZE),
+	DataModule(can_id, 0, 8),
 	aux12V(0),
 	aux3V(0) // unsure if i need to do this, orionBMS doesnt but steering does
 {}
 
 void Mpptx3::ToByteArray(uint8_t* buff) const
 {
-uint8_t hold_12V[sizeof(float)];
-uint8_t hold_3V[sizeof(float)];
-
-memcpy(hold_12V, &aux12V, sizeof(float));
-memcpy(hold_3V, &aux3V, sizeof(float));
+memcpy(hold_1, &aux12V, sizeof(float));
+memcpy(hold_2, &aux3V, sizeof(float));
 
 	for (int i=0;i<=3;i++){
-		buff[i] = hold_12V[i];
+		buff[i] = hold_1[i];
 	}
 	for (int i=4;i<=7;i++){
-		buff[i] = hold_3V[i];
+		buff[i] = hold_2[i];
 	}
 }
 
 void Mpptx3::FromByteArray(uint8_t* buff)
 {
-uint8_t hold_12V[sizeof(float)];
-uint8_t hold_3V[sizeof(float)];
-
 	for(int i=0;i<=3;i++){
-		hold_12V[i] = buff[i];
+		hold_1[i] = buff[i];
 	}
 	for(int i=4;i<=7;i++){
-		hold_3V[i] = buff[i];
+		hold_2[i] = buff[i];
 	}
-memcpy(&aux12V, hold_12V, sizeof(float));
-memcpy(&aux3V, hold_3V, sizeof(float));
+memcpy(&aux12V, hold_1, sizeof(float));
+memcpy(&aux3V, hold_2, sizeof(float));
 }
 
 float Mpptx3::getAux12V() const {
@@ -194,40 +172,34 @@ float Mpptx3::getAux3V() const {
 }
 
 Mpptx4::Mpptx4(uint32_t can_id): // INCREMENT BY 4 FROM MPPTx0
-	DataModule(can_id, 0, SIZE),
+	DataModule(can_id, 0, 8),
 	maxOutputVoltage(0),
 	maxInputCurrent(0) // unsure if i need to do this, orionBMS doesnt but steering does
 {}
 
 void Mpptx4::ToByteArray(uint8_t* buff) const
 {
-uint8_t hold_MOV[sizeof(float)];
-uint8_t hold_MIC[sizeof(float)];
-
-memcpy(hold_MOV, &maxOutputVoltage, sizeof(float));
-memcpy(hold_MIC, &maxInputCurrent, sizeof(float));
+memcpy(hold_1, &maxOutputVoltage, sizeof(float));
+memcpy(hold_2, &maxInputCurrent, sizeof(float));
 
 	for (int i=0;i<=3;i++){
-		buff[i] = hold_MOV[i];
+		buff[i] = hold_1[i];
 	}
 	for (int i=4;i<=7;i++){
-		buff[i] = hold_MIC[i];
+		buff[i] = hold_2[i];
 	}
 }
 
 void Mpptx4::FromByteArray(uint8_t* buff)
 {
-uint8_t hold_MOV[sizeof(float)];
-uint8_t hold_MIC[sizeof(float)];
-
 	for(int i=0;i<=3;i++){
-		hold_MOV[i] = buff[i];
+		hold_1[i] = buff[i];
 	}
 	for(int i=4;i<=7;i++){
-		hold_MIC[i] = buff[i];
+		hold_2[i] = buff[i];
 	}
-memcpy(&maxOutputVoltage, hold_MOV, sizeof(float));
-memcpy(&maxInputCurrent, hold_MIC, sizeof(float));
+memcpy(&maxOutputVoltage, hold_1, sizeof(float));
+memcpy(&maxInputCurrent, hold_2, sizeof(float));
 }
 
 float Mpptx4::getMaxOutputVoltage() const {
@@ -236,5 +208,98 @@ float Mpptx4::getMaxOutputVoltage() const {
 
 float Mpptx4::getMaxInputCurrent() const {
 	return maxInputCurrent;
+}
+
+
+Mpptx5::Mpptx5(uint32_t can_id): // INCREMENT BY 5 FROM MPPTx0
+	DataModule(can_id, 0, 8),
+	CANRXerr(0),
+	CANTXerr(0),
+	CANTXoverflow(0),
+	errorFlags(0),
+	limitFlags(0),
+	mode(0),
+	reserved(0),
+	counter(0)
+{}
+
+void Mpptx5::ToByteArray(uint8_t* buff) const
+{
+	*buff= CANRXerr;
+	*(buff+1)= CANTXerr;
+	*(buff+2)= CANTXoverflow;
+	*(buff+3)= errorFlags;
+	*(buff+4)= limitFlags;
+	*(buff+5)= mode;
+	*(buff+6)= reserved;
+	*(buff+7)= counter;
+}
+
+void Mpptx5::FromByteArray(uint8_t* buff)
+{
+	CANRXerr = *buff;
+	CANTXerr = *(buff + 1);
+	CANTXoverflow = *(buff + 2);
+	errorFlags = *(buff + 3);
+	limitFlags = *(buff + 4);
+	mode = *(buff + 5);
+	reserved = *(buff + 6);
+	counter = *(buff + 7);
+}
+
+uint8_t Mpptx5::getCANRXerr() const{
+	return CANRXerr;
+}
+uint8_t Mpptx5::getCANTXerr() const{
+	return CANTXerr;
+}
+uint8_t Mpptx5::getCANTXoverflow() const{
+	return CANTXoverflow;
+}
+uint8_t Mpptx5::getErrorFlags() const{
+	return errorFlags;
+}
+uint8_t Mpptx5::getLimitFlags() const{
+	return limitFlags;
+}
+uint8_t Mpptx5::getMode() const{
+	return mode;
+}
+uint8_t Mpptx5::getReserved() const{
+	return reserved;
+}
+uint8_t Mpptx5::getCounter() const{
+	return counter;
+}
+
+Mpptx6::Mpptx6(uint32_t can_id): // INCREMENT BY 4 FROM MPPTx0
+	DataModule(can_id, 0, 8),
+	battOutVolt(0),
+	powerConnTemp(0) // unsure if i need to do this, orionBMS doesnt but steering does
+{}
+
+void Mpptx6::ToByteArray(uint8_t* buff) const
+{
+memcpy(hold_1, &battOutVolt, sizeof(float));
+memcpy(hold_2, &powerConnTemp, sizeof(float));
+
+	for (int i=0;i<=3;i++){
+		buff[i] = hold_1[i];
+	}
+	for (int i=4;i<=7;i++){
+		buff[i] = hold_2[i];
+	}
+}
+
+void Mpptx4::FromByteArray(uint8_t* buff)
+{
+	for(int i=0;i<=3;i++){
+		hold_1[i] = buff[i];
+	}
+	for(int i=4;i<=7;i++){
+		hold_2[i] = buff[i];
+	}
+memcpy(&battOutVolt, hold_1, sizeof(float));
+memcpy(&powerConnTemp, hold_2, sizeof(float));
 }
 }
