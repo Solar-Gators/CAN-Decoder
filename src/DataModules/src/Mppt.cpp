@@ -17,9 +17,6 @@ union float2byte
 
 float2byte f2b;
 
-uint8_t hold_1[sizeof(float)];
-uint8_t hold_2[sizeof(float)];
-
 Mpptx0::Mpptx0(uint32_t can_id):
 		DataModule(can_id, 0, 8),
 		inputVoltage(0),
