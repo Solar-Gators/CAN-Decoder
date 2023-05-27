@@ -1,8 +1,8 @@
 /*
- * PowerBoard.cpp
+ * FrontLights.cpp
  *
- *  Created on: Apr 23, 2023
- *      Author: yasha
+ *  Created on: Jan 17, 2022
+ *      Author: John Carr
  */
 
 #include <PowerBoard.hpp>
@@ -10,7 +10,7 @@
 namespace SolarGators {
 namespace DataModules {
 
-//Data for power board information
+
 PowerBoard::PowerBoard(uint32_t can_id, uint32_t telem_id):
         DataModule(can_id, 0, this->Size),
         SupBatVoltage_(0),
@@ -42,21 +42,6 @@ uint8_t PowerBoard::GetPowerSource()
 	return PowerSource_;
 }
 
-void PowerBoard::setSupBatVoltage(uint16_t SupBatVoltage){
-	SupBatVoltage_ = SupBatVoltage;
-}
-
-void PowerBoard::setSupBatPower(uint16_t SupBatPower){
-	SupBatPower_ = SupBatPower;
-}
-
-void PowerBoard::setMainBatPower(uint16_t MainBatPower){
-	MainBatPower_ = MainBatPower;
-}
-
-void PowerBoard::setPowerSource(uint8_t PowerSource){
-	PowerSource_ = PowerSource;
-}
 
 void PowerBoard::ToByteArray(uint8_t* buff)const
 {
