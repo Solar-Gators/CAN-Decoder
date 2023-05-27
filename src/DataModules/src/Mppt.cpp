@@ -58,15 +58,15 @@ float Mpptx0::getInputCurrent() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx0::getMpptNo(){
-		if (this.can_id_ == 0x600){
+		if (can_id_ == 0x600){
 			return 1;
-		} else if(this.can_id_ == 0x610){
+		} else if(can_id_ == 0x610){
 			return 2;
-		} else if(this.can_id_ == 0x620){
+		} else if(can_id_ == 0x620){
 			return 3;
 		}
-		
 	}
+
 	void Mpptx0::PostTelemetry(PythonScripts* scripts){
 		PythonHttp http;
 		http.init();
@@ -119,15 +119,15 @@ float Mpptx1::getOutputCurrent() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx1::getMpptNo(){
-		if (this.can_id_ == 0x600){
+		if (can_id_ == 0x600){
 			return 1;
-		} else if(this.can_id_ == 0x610){
+		} else if(can_id_ == 0x610){
 			return 2;
-		} else if(this.can_id_ == 0x620){
+		} else if(can_id_ == 0x620){
 			return 3;
 		}
-		
 	}
+
 	void Mpptx1::PostTelemetry(PythonScripts* scripts){
 		PythonHttp http;
 		http.init();
@@ -180,15 +180,15 @@ float Mpptx2::getControllerTemp() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx2::getMpptNo(){
-		if (this.can_id_ == 0x600){
+		if (can_id_ == 0x600){
 			return 1;
-		} else if(this.can_id_ == 0x610){
+		} else if(can_id_ == 0x610){
 			return 2;
-		} else if(this.can_id_ == 0x620){
+		} else if(can_id_ == 0x620){
 			return 3;
 		}
-		
 	}
+
 	void Mpptx2::PostTelemetry(PythonScripts* scripts){
 		PythonHttp http;
 		http.init();
@@ -241,15 +241,15 @@ float Mpptx3::getAux3V() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx3::getMpptNo(){
-		if (this.can_id_ == 0x600){
+		if (can_id_ == 0x600){
 			return 1;
-		} else if(this.can_id_ == 0x610){
+		} else if(can_id_ == 0x610){
 			return 2;
-		} else if(this.can_id_ == 0x620){
+		} else if(can_id_ == 0x620){
 			return 3;
 		}
-		
 	}
+
 	void Mpptx3::PostTelemetry(PythonScripts* scripts){
 		PythonHttp http;
 		http.init();
@@ -301,16 +301,16 @@ float Mpptx4::getMaxInputCurrent() const {
 
 #ifdef IS_TELEMETRY
 
-	uint8_t Mpptx4::getMpptNo(){
-		if (this.can_id_ == 0x600){
+	uint8_t Mpptx5::getMpptNo(){
+		if (can_id_ == 0x600){
 			return 1;
-		} else if(this.can_id_ == 0x610){
+		} else if(can_id_ == 0x610){
 			return 2;
-		} else if(this.can_id_ == 0x620){
+		} else if(can_id_ == 0x620){
 			return 3;
 		}
-		
 	}
+
 	void Mpptx4::PostTelemetry(PythonScripts* scripts){
 		PythonHttp http;
 		http.init();
@@ -386,16 +386,16 @@ uint8_t Mpptx5::getCounter() const{
 
 #ifdef IS_TELEMETRY
 
-	uint8_t Mpptx5::getMpptNo(){
-		if (this.can_id_ == 0x600){
+	uint8_t Mpptx0::getMpptNo(){
+		if (can_id_ == 0x600){
 			return 1;
-		} else if(this.can_id_ == 0x610){
+		} else if(can_id_ == 0x610){
 			return 2;
-		} else if(this.can_id_ == 0x620){
+		} else if(can_id_ == 0x620){
 			return 3;
 		}
-		
 	}
+
 	void Mpptx5::PostTelemetry(PythonScripts* scripts){
 		PythonHttp http;
 		http.init();
@@ -455,16 +455,16 @@ void Mpptx6::getPowerConnTemp() const{
 
 #ifdef IS_TELEMETRY
 
-	uint8_t Mpptx6::getMpptNo(){
-		if (this.can_id_ == 0x600){
+	uint8_t Mpptx0::getMpptNo(){
+		if (can_id_ == 0x600){
 			return 1;
-		} else if(this.can_id_ == 0x610){
+		} else if(can_id_ == 0x610){
 			return 2;
-		} else if(this.can_id_ == 0x620){
+		} else if(can_id_ == 0x620){
 			return 3;
 		}
-		
 	}
+	
 	void Mpptx6::PostTelemetry(PythonScripts* scripts){
 		PythonHttp http;
 		http.init();
