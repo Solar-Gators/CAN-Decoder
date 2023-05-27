@@ -65,15 +65,14 @@ float Mpptx0::getInputCurrent() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx0::getMpptNo(){
-		mpptNumber mpptNo;
-		if (can_id_ == MPPT0_RX0_MSG_ID){
+		if (can_id_ == SolarGators::DataModuleInfo::MPPT0_RX0_MSG_ID){
 			mpptNumber = MPPT0;
-		} else if(can_id_ == MPPT1_RX0_MSG_ID){
+		} else if(can_id_ == SolarGators::DataModuleInfo::MPPT1_RX0_MSG_ID){
 			mpptNumber = MPPT1;
-		} else if(can_id_ == MPPT2_RX0_MSG_ID){
+		} else if(can_id_ == SolarGators::DataModuleInfo::MPPT2_RX0_MSG_ID){
 			mpptNumber = MPPT2;
 		}
-		return mpptNo;
+		return mpptNumber;
 	}
 
 	void Mpptx0::PostTelemetry(PythonScripts* scripts){
@@ -128,15 +127,14 @@ float Mpptx1::getOutputCurrent() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx1::getMpptNo(){
-		mpptNumber mpptNo;
-		if (can_id_ == MPPT0_RX1_MSG_ID){
+		if (can_id_ == SolarGators::DataModuleInfo::MPPT0_RX1_MSG_ID){
 			mpptNumber = MPPT0;
-		} else if(can_id_ == MPPT1_RX1_MSG_ID){
+		} else if(can_id_ == SolarGators::DataModuleInfo::MPPT1_RX1_MSG_ID){
 			mpptNumber = MPPT1;
-		} else if(can_id_ == MPPT2_RX1_MSG_ID){
+		} else if(can_id_ == SolarGators::DataModuleInfo::MPPT2_RX1_MSG_ID){
 			mpptNumber = MPPT2;
 		}
-		return mpptNo;
+		return mpptNumber;
 	}
 
 	void Mpptx1::PostTelemetry(PythonScripts* scripts){
@@ -191,15 +189,14 @@ float Mpptx2::getControllerTemp() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx2::getMpptNo(){
-		mpptNumber mpptNo;
-		if (can_id_ == MPPT0_RX2_MSG_ID){
+		if (can_id_ == SolarGators::DataModuleInfo::MPPT0_RX2_MSG_ID){
 			mpptNumber = MPPT0;
-		} else if(can_id_ == MPPT1_RX2_MSG_ID){
+		} else if(can_id_ == SolarGators::DataModuleInfo::MPPT1_RX2_MSG_ID){
 			mpptNumber = MPPT1;
-		} else if(can_id_ == MPPT2_RX2_MSG_ID){
+		} else if(can_id_ == SolarGators::DataModuleInfo::MPPT2_RX2_MSG_ID){
 			mpptNumber = MPPT2;
 		}
-		return mpptNo;
+		return mpptNumber;
 	}
 
 	void Mpptx2::PostTelemetry(PythonScripts* scripts){
@@ -254,15 +251,14 @@ float Mpptx3::getAux3V() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx3::getMpptNo(){
-		mpptNumber mpptNo;
-		if (can_id_ == MPPT0_RX3_MSG_ID){
+		if (can_id_ == SolarGators::DataModuleInfo::MPPT0_RX3_MSG_ID){
 			mpptNumber = MPPT0;
-		} else if(can_id_ == MPPT1_RX3_MSG_ID){
+		} else if(can_id_ == SolarGators::DataModuleInfo::MPPT1_RX3_MSG_ID){
 			mpptNumber = MPPT1;
-		} else if(can_id_ == MPPT2_RX3_MSG_ID){
+		} else if(can_id_ == SolarGators::DataModuleInfo::MPPT2_RX3_MSG_ID){
 			mpptNumber = MPPT2;
 		}
-		return mpptNo;
+		return mpptNumber;
 	}
 
 	void Mpptx3::PostTelemetry(PythonScripts* scripts){
@@ -317,15 +313,14 @@ float Mpptx4::getMaxInputCurrent() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx4::getMpptNo(){
-		mpptNumber mpptNo;
-		if (can_id_ == MPPT0_RX4_MSG_ID){
+		if (can_id_ == SolarGators::DataModuleInfo::MPPT0_RX4_MSG_ID){
 			mpptNumber = MPPT0;
-		} else if(can_id_ == MPPT1_RX4_MSG_ID){
+		} else if(can_id_ == SolarGators::DataModuleInfo::MPPT1_RX4_MSG_ID){
 			mpptNumber = MPPT1;
-		} else if(can_id_ == MPPT2_RX4_MSG_ID){
+		} else if(can_id_ == SolarGators::DataModuleInfo::MPPT2_RX4_MSG_ID){
 			mpptNumber = MPPT2;
 		}
-		return mpptNo;
+		return mpptNumber;
 	}
 
 	void Mpptx4::PostTelemetry(PythonScripts* scripts){
@@ -404,15 +399,14 @@ uint8_t Mpptx5::getCounter() const{
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx5::getMpptNo(){
-		mpptNumber mpptNo;
-		if (can_id_ == MPPT0_RX5_MSG_ID){
+		if (can_id_ == SolarGators::DataModuleInfo::MPPT0_RX5_MSG_ID){
 			mpptNumber = MPPT0;
-		} else if(can_id_ == MPPT1_RX5_MSG_ID){
+		} else if(can_id_ == SolarGators::DataModuleInfo::MPPT1_RX5_MSG_ID){
 			mpptNumber = MPPT1;
-		} else if(can_id_ == MPPT2_RX5_MSG_ID){
+		} else if(can_id_ == SolarGators::DataModuleInfo::MPPT2_RX5_MSG_ID){
 			mpptNumber = MPPT2;
 		}
-		return mpptNo;
+		return mpptNumber;
 	}
 
 	void Mpptx5::PostTelemetry(PythonScripts* scripts){
@@ -475,15 +469,14 @@ float Mpptx6::getPowerConnTemp() const{
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx6::getMpptNo(){
-		mpptNumber mpptNo;
-		if (can_id_ == MPPT0_RX6_MSG_ID){
+		if (can_id_ == SolarGators::DataModuleInfo::MPPT0_RX6_MSG_ID){
 			mpptNumber = MPPT0;
-		} else if(can_id_ == MPPT1_RX6_MSG_ID){
+		} else if(can_id_ == SolarGators::DataModuleInfo::MPPT1_RX6_MSG_ID){
 			mpptNumber = MPPT1;
-		} else if(can_id_ == MPPT2_RX6_MSG_ID){
+		} else if(can_id_ == SolarGators::DataModuleInfo::MPPT2_RX6_MSG_ID){
 			mpptNumber = MPPT2;
 		}
-		return mpptNo;
+		return mpptNumber;
 	}
 
 	void Mpptx6::PostTelemetry(PythonScripts* scripts){
