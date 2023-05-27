@@ -29,6 +29,7 @@ namespace SolarGators::DataModules
 	protected:
 		float inputVoltage;
 		float inputCurrent;
+
 	};
 
 	class Mpptx1 final: public DataModule {
@@ -47,6 +48,7 @@ namespace SolarGators::DataModules
 	protected:
 		float outputVoltage;
 		float outputCurrent;
+		
 	};
 
 	class Mpptx2 final: public DataModule {
@@ -65,6 +67,7 @@ namespace SolarGators::DataModules
 		protected:
 			float mosfetTemp;
 			float controllerTemp;
+
 	};
 
 	class Mpptx3 final: public DataModule {
@@ -83,6 +86,7 @@ namespace SolarGators::DataModules
 		protected:
 			float aux12V;
 			float aux3V;
+
 	};
 
 	class Mpptx4 final: public DataModule {
@@ -101,6 +105,7 @@ namespace SolarGators::DataModules
 		protected:
 			float maxOutputVoltage;
 			float maxInputCurrent;
+
 		};
 
 	class Mpptx5 final: public DataModule {
@@ -131,6 +136,7 @@ namespace SolarGators::DataModules
 				uint8_t mode;
 				uint8_t reserved;
 				uint8_t counter;
+
 	};
 
 	class Mpptx6 final: public DataModule {
@@ -149,6 +155,7 @@ namespace SolarGators::DataModules
 			protected:
 				float battOutVolt;
 				float powerConnTemp;
+
 			};
 }
 

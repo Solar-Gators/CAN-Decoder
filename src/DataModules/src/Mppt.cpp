@@ -5,6 +5,7 @@
  *      Author: Jack W
  */
 #include "Mppt.hpp"
+#include "DataModuleInfo.hpp"
 
 namespace SolarGators::DataModules
 {
@@ -16,6 +17,12 @@ union float2byte
 };
 
 float2byte f2b;
+
+enum {
+	MPPT0 = 1,
+	MPPT1 = 2,
+	MPPT2 = 3
+} mpptNumber;
 
 Mpptx0::Mpptx0(uint32_t can_id):
 		DataModule(can_id, 0, 8),
@@ -58,13 +65,13 @@ float Mpptx0::getInputCurrent() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx0::getMpptNo(){
-		uint8_t mpptNo;
-		if (can_id_ == 0x600){
-			mpptNo = 1;
-		} else if(can_id_ == 0x610){
-			mpptNo = 2;
-		} else if(can_id_ == 0x620){
-			mpptNo = 3;
+		mpptNumber mpptNo;
+		if (can_id_ == MPPT0_RX0_MSG_ID){
+			mpptNumber = MPPT0;
+		} else if(can_id_ == MPPT1_RX0_MSG_ID){
+			mpptNumber = MPPT1;
+		} else if(can_id_ == MPPT2_RX0_MSG_ID){
+			mpptNumber = MPPT2;
 		}
 		return mpptNo;
 	}
@@ -121,13 +128,13 @@ float Mpptx1::getOutputCurrent() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx1::getMpptNo(){
-		uint8_t mpptNo;
-		if (can_id_ == 0x600){
-			mpptNo = 1;
-		} else if(can_id_ == 0x610){
-			mpptNo = 2;
-		} else if(can_id_ == 0x620){
-			mpptNo = 3;
+		mpptNumber mpptNo;
+		if (can_id_ == MPPT0_RX1_MSG_ID){
+			mpptNumber = MPPT0;
+		} else if(can_id_ == MPPT1_RX1_MSG_ID){
+			mpptNumber = MPPT1;
+		} else if(can_id_ == MPPT2_RX1_MSG_ID){
+			mpptNumber = MPPT2;
 		}
 		return mpptNo;
 	}
@@ -184,13 +191,13 @@ float Mpptx2::getControllerTemp() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx2::getMpptNo(){
-		uint8_t mpptNo;
-		if (can_id_ == 0x600){
-			mpptNo = 1;
-		} else if(can_id_ == 0x610){
-			mpptNo = 2;
-		} else if(can_id_ == 0x620){
-			mpptNo = 3;
+		mpptNumber mpptNo;
+		if (can_id_ == MPPT0_RX2_MSG_ID){
+			mpptNumber = MPPT0;
+		} else if(can_id_ == MPPT1_RX2_MSG_ID){
+			mpptNumber = MPPT1;
+		} else if(can_id_ == MPPT2_RX2_MSG_ID){
+			mpptNumber = MPPT2;
 		}
 		return mpptNo;
 	}
@@ -247,13 +254,13 @@ float Mpptx3::getAux3V() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx3::getMpptNo(){
-		uint8_t mpptNo;
-		if (can_id_ == 0x600){
-			mpptNo = 1;
-		} else if(can_id_ == 0x610){
-			mpptNo = 2;
-		} else if(can_id_ == 0x620){
-			mpptNo = 3;
+		mpptNumber mpptNo;
+		if (can_id_ == MPPT0_RX3_MSG_ID){
+			mpptNumber = MPPT0;
+		} else if(can_id_ == MPPT1_RX3_MSG_ID){
+			mpptNumber = MPPT1;
+		} else if(can_id_ == MPPT2_RX3_MSG_ID){
+			mpptNumber = MPPT2;
 		}
 		return mpptNo;
 	}
@@ -310,13 +317,13 @@ float Mpptx4::getMaxInputCurrent() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx4::getMpptNo(){
-		uint8_t mpptNo;
-		if (can_id_ == 0x600){
-			mpptNo = 1;
-		} else if(can_id_ == 0x610){
-			mpptNo = 2;
-		} else if(can_id_ == 0x620){
-			mpptNo = 3;
+		mpptNumber mpptNo;
+		if (can_id_ == MPPT0_RX4_MSG_ID){
+			mpptNumber = MPPT0;
+		} else if(can_id_ == MPPT1_RX4_MSG_ID){
+			mpptNumber = MPPT1;
+		} else if(can_id_ == MPPT2_RX4_MSG_ID){
+			mpptNumber = MPPT2;
 		}
 		return mpptNo;
 	}
@@ -397,13 +404,13 @@ uint8_t Mpptx5::getCounter() const{
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx5::getMpptNo(){
-		uint8_t mpptNo;
-		if (can_id_ == 0x600){
-			mpptNo = 1;
-		} else if(can_id_ == 0x610){
-			mpptNo = 2;
-		} else if(can_id_ == 0x620){
-			mpptNo = 3;
+		mpptNumber mpptNo;
+		if (can_id_ == MPPT0_RX5_MSG_ID){
+			mpptNumber = MPPT0;
+		} else if(can_id_ == MPPT1_RX5_MSG_ID){
+			mpptNumber = MPPT1;
+		} else if(can_id_ == MPPT2_RX5_MSG_ID){
+			mpptNumber = MPPT2;
 		}
 		return mpptNo;
 	}
@@ -468,13 +475,13 @@ float Mpptx6::getPowerConnTemp() const{
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx6::getMpptNo(){
-		uint8_t mpptNo;
-		if (can_id_ == 0x600){
-			mpptNo = 1;
-		} else if(can_id_ == 0x610){
-			mpptNo = 2;
-		} else if(can_id_ == 0x620){
-			mpptNo = 3;
+		mpptNumber mpptNo;
+		if (can_id_ == MPPT0_RX6_MSG_ID){
+			mpptNumber = MPPT0;
+		} else if(can_id_ == MPPT1_RX6_MSG_ID){
+			mpptNumber = MPPT1;
+		} else if(can_id_ == MPPT2_RX6_MSG_ID){
+			mpptNumber = MPPT2;
 		}
 		return mpptNo;
 	}
