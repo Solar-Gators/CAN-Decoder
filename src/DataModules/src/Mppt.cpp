@@ -170,42 +170,69 @@ float Mpptx3::getAux3V() const {
 }
 
 Mpptx4::Mpptx4(uint32_t can_id): // INCREMENT BY 4 FROM MPPTx0
-	DataModule(can_id, 0, 8),
+	DataModule(can_id, 0, SIZE),
 	maxOutputVoltage(0),
-	maxInputCurrent(0) // unsure if i need to do this, orionBMS doesnt but steering does
+	maxInputCurrent(0)
 {}
 
 void Mpptx4::ToByteArray(uint8_t* buff) const
 {
-	f2b.f = maxOutputVoltage;
-	for (int i=0;i<=3;i++){
-		buff[i] = f2b.s[i];
-	}
-	f2b.f = maxInputCurrent;
-	for (int i=4;i<=7;i++){
-		buff[i] = f2b.s[i];
-	}
+	//need to be cautious of data types when using a union like this
+	union{
+		uint8_t y[4];
+		float z;
+	} data;
+
+	data.z = maxOutputVoltage;
+	buff[3] = data.y[3];
+	buff[2] = data.y[2];
+	buff[1] = data.y[1];
+	buff[0] = data.y[0];
+
+	data.z = maxInputCurrent;
+	buff[7] = data.y[3];
+	buff[6] = data.y[2];
+	buff[5] = data.y[1];
+	buff[4] = data.y[0];
 }
 
 void Mpptx4::FromByteArray(uint8_t* buff)
 {
+	//the below is an alernate way of type punning that i think is more safe cuz declared datatypes...
+	//but i like the actual way better it looks more efficient
+	/*
+	unsigned long int maxVolt = (unsigned long int)buff[3]<<24|(unsigned long int)buff[2]<<16|(unsigned long int)buff[1]<<8|(unsigned long int)buff[0];
+	unsigned long int maxCur = (unsigned long int)buff[7]<<24|(unsigned long int)buff[6]<<16|(unsigned long int)buff[5]<<8|(unsigned long int)buff[4];
+	union
+	{
+		long y;
+		float z;
+	}data;
+	data.y = maxCur;
+	maxInputCurrent = data.z;
+	data.y = maxVolt;
+	maxOutputVoltage = data.z;
+	*/
 	for(int i=0;i<=3;i++){
 		f2b.s[i] = buff[i];
 	}
 	maxOutputVoltage = f2b.f;
 	for(int i=4;i<=7;i++){
-		f2b.s[i] = buff[i];
+		f2b.s[i-4] = buff[i];
 	}
 	maxInputCurrent = f2b.f;
 }
 
 float Mpptx4::getMaxOutputVoltage() const {
+	//return float values
 	return maxOutputVoltage;
 }
 
 float Mpptx4::getMaxInputCurrent() const {
 	return maxInputCurrent;
 }
+}
+
 
 
 Mpptx5::Mpptx5(uint32_t can_id): // INCREMENT BY 5 FROM MPPTx0
