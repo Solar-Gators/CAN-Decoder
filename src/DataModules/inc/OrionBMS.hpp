@@ -56,6 +56,7 @@ namespace SolarGators::DataModules
     uint8_t getInternalTemp() const;
     uint8_t getLowTemp() const;
     uint8_t getLowTempId() const;
+    
 
     static constexpr uint8_t Size = 8;
   protected:
@@ -66,6 +67,7 @@ namespace SolarGators::DataModules
     uint8_t avg_temp_;
     uint8_t internal_temp_;
     uint8_t constant_val_;
+
   };
 
   class OrionBMSRx2 final: public DataModule
@@ -91,6 +93,7 @@ namespace SolarGators::DataModules
     uint16_t pack_ccl_;
     int16_t pack_current_;
     uint16_t constant_val_;
+    ifdef IS_TELEMETRY
   };
 
   class OrionBMSRx3 final: public DataModule

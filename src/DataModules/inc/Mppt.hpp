@@ -20,7 +20,10 @@ namespace SolarGators::DataModules
 
 		float getInputVoltage() const;
 		float getInputCurrent() const;
-
+		#ifdef IS_TELEMETRY
+    	void PostTelemetry(PythonScripts* scripts);
+		uint8_t getMpptNo();
+    	#endif
 		void ToByteArray(uint8_t* buff) const;
 		void FromByteArray(uint8_t* buff);
 	protected:
@@ -35,7 +38,10 @@ namespace SolarGators::DataModules
 
 		float getOutputVoltage() const;
 		float getOutputCurrent() const;
-
+		#ifdef IS_TELEMETRY
+    	void PostTelemetry(PythonScripts* scripts);
+		uint8_t getMpptNo();
+    	#endif
 		void ToByteArray(uint8_t* buff) const;
 		void FromByteArray(uint8_t* buff);
 	protected:
@@ -50,7 +56,10 @@ namespace SolarGators::DataModules
 
 			float getMosfetTemp() const;
 			float getControllerTemp() const;
-
+			#ifdef IS_TELEMETRY
+			void PostTelemetry(PythonScripts* scripts);
+			uint8_t getMpptNo();
+			#endif
 			void ToByteArray(uint8_t* buff) const;
 			void FromByteArray(uint8_t* buff);
 		protected:
@@ -65,7 +74,10 @@ namespace SolarGators::DataModules
 
 			float getAux12V() const;
 			float getAux3V() const;
-
+			#ifdef IS_TELEMETRY
+			void PostTelemetry(PythonScripts* scripts);
+			uint8_t getMpptNo();
+			#endif
 			void ToByteArray(uint8_t* buff) const;
 			void FromByteArray(uint8_t* buff);
 		protected:
@@ -80,7 +92,10 @@ namespace SolarGators::DataModules
 
 			float getMaxOutputVoltage() const;
 			float getMaxInputCurrent() const;
-
+			#ifdef IS_TELEMETRY
+			void PostTelemetry(PythonScripts* scripts);
+			uint8_t getMpptNo();
+			#endif
 			void ToByteArray(uint8_t* buff) const;
 			void FromByteArray(uint8_t* buff);
 		protected:
@@ -92,7 +107,10 @@ namespace SolarGators::DataModules
 			public:
 				Mpptx5(uint32_t can_id);
 				~Mpptx5() {};
-
+				#ifdef IS_TELEMETRY
+				void PostTelemetry(PythonScripts* scripts);
+				uint8_t getMpptNo();
+				#endif
 				uint8_t getCANRXerr() const;
 				uint8_t getCANTXerr() const;
 				uint8_t getCANTXoverflow() const;
@@ -122,7 +140,10 @@ namespace SolarGators::DataModules
 
 				float getBattOutVolt() const;
 				float getPowerConnTemp() const;
-
+				#ifdef IS_TELEMETRY
+				void PostTelemetry(PythonScripts* scripts);
+				uint8_t getMpptNo();
+				#endif
 				void ToByteArray(uint8_t* buff) const;
 				void FromByteArray(uint8_t* buff);
 			protected:

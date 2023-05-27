@@ -55,6 +55,29 @@ float Mpptx0::getInputCurrent() const {
 	return inputCurrent;
 }
 
+#ifdef IS_TELEMETRY
+
+	uint8_t Mpptx0::getMpptNo(){
+		if (this.can_id_ == 0x600){
+			return 1;
+		} else if(this.can_id_ == 0x610){
+			return 2;
+		} else if(this.can_id_ == 0x620){
+			return 3;
+		}
+		
+	}
+	void Mpptx0::PostTelemetry(PythonScripts* scripts){
+		PythonHttp http;
+		http.init();
+		http.addData("inputVoltage", getInputVoltage());
+		http.addData("inputCurrent", getInputCurrent());
+		http.addData("mpptNumber", getMpptNo());
+		scripts->send("mppt/rx0", http.getParameters());
+		http.flush();
+	}
+#endif
+
 Mpptx1::Mpptx1(uint32_t can_id): // INCREMENT BY 1 FROM MPPTx0
 		DataModule(can_id, 0, 8),
 		outputVoltage(0),
@@ -92,6 +115,29 @@ float Mpptx1::getOutputVoltage() const {
 float Mpptx1::getOutputCurrent() const {
 	return outputCurrent;
 }
+
+#ifdef IS_TELEMETRY
+
+	uint8_t Mpptx1::getMpptNo(){
+		if (this.can_id_ == 0x600){
+			return 1;
+		} else if(this.can_id_ == 0x610){
+			return 2;
+		} else if(this.can_id_ == 0x620){
+			return 3;
+		}
+		
+	}
+	void Mpptx1::PostTelemetry(PythonScripts* scripts){
+		PythonHttp http;
+		http.init();
+		http.addData("outputVoltage", getOutputVoltage());
+		http.addData("outputCurrent", getOutputCurrent());
+		http.addData("mpptNumber", getMpptNo());
+		scripts->send("mppt/rx1", http.getParameters());
+		http.flush();
+	}
+#endif
 
 Mpptx2::Mpptx2(uint32_t can_id): // INCREMENT BY 2 FROM MPPTx0
 	DataModule(can_id, 0, 8),
@@ -131,6 +177,29 @@ float Mpptx2::getControllerTemp() const {
 	return controllerTemp;
 }
 
+#ifdef IS_TELEMETRY
+
+	uint8_t Mpptx2::getMpptNo(){
+		if (this.can_id_ == 0x600){
+			return 1;
+		} else if(this.can_id_ == 0x610){
+			return 2;
+		} else if(this.can_id_ == 0x620){
+			return 3;
+		}
+		
+	}
+	void Mpptx2::PostTelemetry(PythonScripts* scripts){
+		PythonHttp http;
+		http.init();
+		http.addData("mosfetTemp", getMosfetTemp());
+		http.addData("controllerTemp", getControllerTemp());
+		http.addData("mpptNumber", getMpptNo());
+		scripts->send("mppt/rx2", http.getParameters());
+		http.flush();
+	}
+#endif
+
 Mpptx3::Mpptx3(uint32_t can_id): // INCREMENT BY 3 FROM MPPTx0
 	DataModule(can_id, 0, 8),
 	aux12V(0),
@@ -169,6 +238,29 @@ float Mpptx3::getAux3V() const {
 	return aux3V;
 }
 
+#ifdef IS_TELEMETRY
+
+	uint8_t Mpptx3::getMpptNo(){
+		if (this.can_id_ == 0x600){
+			return 1;
+		} else if(this.can_id_ == 0x610){
+			return 2;
+		} else if(this.can_id_ == 0x620){
+			return 3;
+		}
+		
+	}
+	void Mpptx3::PostTelemetry(PythonScripts* scripts){
+		PythonHttp http;
+		http.init();
+		http.addData("aux12v", getAux12V());
+		http.addData("aux3v", getAux3V());
+		http.addData("mpptNumber", getMpptNo());
+		scripts->send("mppt/rx3", http.getParameters());
+		http.flush();
+	}
+#endif
+
 Mpptx4::Mpptx4(uint32_t can_id): // INCREMENT BY 4 FROM MPPTx0
 	DataModule(can_id, 0, 8),
 	maxOutputVoltage(0),
@@ -206,6 +298,29 @@ float Mpptx4::getMaxOutputVoltage() const {
 float Mpptx4::getMaxInputCurrent() const {
 	return maxInputCurrent;
 }
+
+#ifdef IS_TELEMETRY
+
+	uint8_t Mpptx4::getMpptNo(){
+		if (this.can_id_ == 0x600){
+			return 1;
+		} else if(this.can_id_ == 0x610){
+			return 2;
+		} else if(this.can_id_ == 0x620){
+			return 3;
+		}
+		
+	}
+	void Mpptx4::PostTelemetry(PythonScripts* scripts){
+		PythonHttp http;
+		http.init();
+		http.addData("maxOutputVoltage", getMaxOutputVoltage());
+		http.addData("maxInputCurrent", getMaxInputCurrent());
+		http.addData("mpptNumber", getMpptNo());
+		scripts->send("mppt/rx4", http.getParameters());
+		http.flush();
+	}
+#endif
 
 
 Mpptx5::Mpptx5(uint32_t can_id): // INCREMENT BY 5 FROM MPPTx0
@@ -269,6 +384,33 @@ uint8_t Mpptx5::getCounter() const{
 	return counter;
 }
 
+#ifdef IS_TELEMETRY
+
+	uint8_t Mpptx5::getMpptNo(){
+		if (this.can_id_ == 0x600){
+			return 1;
+		} else if(this.can_id_ == 0x610){
+			return 2;
+		} else if(this.can_id_ == 0x620){
+			return 3;
+		}
+		
+	}
+	void Mpptx5::PostTelemetry(PythonScripts* scripts){
+		PythonHttp http;
+		http.init();
+		http.addData("CANRXerr", getCANRXerr());
+		http.addData("CANTXerr", getCANTXerr());
+		http.addData("CANTXoverflow", getCANTXoverflow());
+		http.addData("errorFlags", getErrorFlags());
+		http.addData("limitFlags", getLimitFlags());
+		http.addData("mode", getMode());
+		http.addData("mpptNumber", getMpptNo());
+		scripts->send("mppt/rx5", http.getParameters());
+		http.flush();
+	}
+#endif
+
 Mpptx6::Mpptx6(uint32_t can_id): // INCREMENT BY 4 FROM MPPTx0
 	DataModule(can_id, 0, 8),
 	battOutVolt(0),
@@ -302,5 +444,36 @@ void Mpptx6::FromByteArray(uint8_t* buff)
 	powerConnTemp = f2b.f;
 
 }
+
+void Mpptx6::getBattOutVolt() const{
+	return battOutVolt;
+}
+
+void Mpptx6::getPowerConnTemp() const{
+	return powerConnTemp;
+}
+
+#ifdef IS_TELEMETRY
+
+	uint8_t Mpptx6::getMpptNo(){
+		if (this.can_id_ == 0x600){
+			return 1;
+		} else if(this.can_id_ == 0x610){
+			return 2;
+		} else if(this.can_id_ == 0x620){
+			return 3;
+		}
+		
+	}
+	void Mpptx6::PostTelemetry(PythonScripts* scripts){
+		PythonHttp http;
+		http.init();
+		http.addData("battOutVolt", getBattOutVolt());
+		http.addData("powerConnTemp", getPowerConnTemp());
+		http.addData("mpptNumber", getMpptNo());
+		scripts->send("mppt/rx6", http.getParameters());
+		http.flush();
+	}
+#endif
 
 }
