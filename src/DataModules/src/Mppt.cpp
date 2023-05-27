@@ -457,11 +457,11 @@ void Mpptx6::FromByteArray(uint8_t* buff)
 
 }
 
-void Mpptx6::getBattOutVolt() const{
+float Mpptx6::getBattOutVolt() const{
 	return battOutVolt;
 }
 
-void Mpptx6::getPowerConnTemp() const{
+float Mpptx6::getPowerConnTemp() const{
 	return powerConnTemp;
 }
 
