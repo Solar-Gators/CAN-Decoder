@@ -58,13 +58,15 @@ float Mpptx0::getInputCurrent() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx0::getMpptNo(){
+		uint8_t mpptNo;
 		if (can_id_ == 0x600){
-			return 1;
+			mpptNo = 1;
 		} else if(can_id_ == 0x610){
-			return 2;
+			mpptNo = 2;
 		} else if(can_id_ == 0x620){
-			return 3;
+			mpptNo = 3;
 		}
+		return mpptNo;
 	}
 
 	void Mpptx0::PostTelemetry(PythonScripts* scripts){
@@ -119,13 +121,15 @@ float Mpptx1::getOutputCurrent() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx1::getMpptNo(){
+		uint8_t mpptNo;
 		if (can_id_ == 0x600){
-			return 1;
+			mpptNo = 1;
 		} else if(can_id_ == 0x610){
-			return 2;
+			mpptNo = 2;
 		} else if(can_id_ == 0x620){
-			return 3;
+			mpptNo = 3;
 		}
+		return mpptNo;
 	}
 
 	void Mpptx1::PostTelemetry(PythonScripts* scripts){
@@ -180,13 +184,15 @@ float Mpptx2::getControllerTemp() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx2::getMpptNo(){
+		uint8_t mpptNo;
 		if (can_id_ == 0x600){
-			return 1;
+			mpptNo = 1;
 		} else if(can_id_ == 0x610){
-			return 2;
+			mpptNo = 2;
 		} else if(can_id_ == 0x620){
-			return 3;
+			mpptNo = 3;
 		}
+		return mpptNo;
 	}
 
 	void Mpptx2::PostTelemetry(PythonScripts* scripts){
@@ -241,13 +247,15 @@ float Mpptx3::getAux3V() const {
 #ifdef IS_TELEMETRY
 
 	uint8_t Mpptx3::getMpptNo(){
+		uint8_t mpptNo;
 		if (can_id_ == 0x600){
-			return 1;
+			mpptNo = 1;
 		} else if(can_id_ == 0x610){
-			return 2;
+			mpptNo = 2;
 		} else if(can_id_ == 0x620){
-			return 3;
+			mpptNo = 3;
 		}
+		return mpptNo;
 	}
 
 	void Mpptx3::PostTelemetry(PythonScripts* scripts){
@@ -301,14 +309,16 @@ float Mpptx4::getMaxInputCurrent() const {
 
 #ifdef IS_TELEMETRY
 
-	uint8_t Mpptx5::getMpptNo(){
+	uint8_t Mpptx4::getMpptNo(){
+		uint8_t mpptNo;
 		if (can_id_ == 0x600){
-			return 1;
+			mpptNo = 1;
 		} else if(can_id_ == 0x610){
-			return 2;
+			mpptNo = 2;
 		} else if(can_id_ == 0x620){
-			return 3;
+			mpptNo = 3;
 		}
+		return mpptNo;
 	}
 
 	void Mpptx4::PostTelemetry(PythonScripts* scripts){
@@ -386,14 +396,16 @@ uint8_t Mpptx5::getCounter() const{
 
 #ifdef IS_TELEMETRY
 
-	uint8_t Mpptx0::getMpptNo(){
+	uint8_t Mpptx5::getMpptNo(){
+		uint8_t mpptNo;
 		if (can_id_ == 0x600){
-			return 1;
+			mpptNo = 1;
 		} else if(can_id_ == 0x610){
-			return 2;
+			mpptNo = 2;
 		} else if(can_id_ == 0x620){
-			return 3;
+			mpptNo = 3;
 		}
+		return mpptNo;
 	}
 
 	void Mpptx5::PostTelemetry(PythonScripts* scripts){
@@ -455,16 +467,18 @@ void Mpptx6::getPowerConnTemp() const{
 
 #ifdef IS_TELEMETRY
 
-	uint8_t Mpptx0::getMpptNo(){
+	uint8_t Mpptx6::getMpptNo(){
+		uint8_t mpptNo;
 		if (can_id_ == 0x600){
-			return 1;
+			mpptNo = 1;
 		} else if(can_id_ == 0x610){
-			return 2;
+			mpptNo = 2;
 		} else if(can_id_ == 0x620){
-			return 3;
+			mpptNo = 3;
 		}
+		return mpptNo;
 	}
-	
+
 	void Mpptx6::PostTelemetry(PythonScripts* scripts){
 		PythonHttp http;
 		http.init();

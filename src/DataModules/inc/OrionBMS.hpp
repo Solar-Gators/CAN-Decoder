@@ -93,7 +93,6 @@ namespace SolarGators::DataModules
     uint16_t pack_ccl_;
     int16_t pack_current_;
     uint16_t constant_val_;
-    ifdef IS_TELEMETRY
   };
 
   class OrionBMSRx3 final: public DataModule
