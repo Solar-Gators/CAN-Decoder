@@ -340,8 +340,6 @@ Mpptx5::Mpptx5(uint32_t can_id): // INCREMENT BY 5 FROM MPPTx0
 	CANRXerr(0),
 	CANTXerr(0),
 	CANTXoverflow(0),
-	errorFlags(0),
-	limitFlags(0),
 	mode(0),
 	reserved(0),
 	counter(0)
@@ -487,22 +485,22 @@ bool Mpptx5::isFlagGlobalMppt() const{
 		http.addData("CANTXerr", getCANTXerr());
 		http.addData("CANTXoverflow", getCANTXoverflow());
 
-		http.addData("error_low_array_power", isLowArrayPowerError);
-		http.addData("error_mosfet_overheat", isMosfetOverheatError);
-		http.addData("error_battery_low", isBatteryLowError);
-		http.addData("error_batter_full", isBatteryFullError);
-		http.addData("error_12v_undervolt", is12vUndervoltError);
-		http.addData("error_hw_overcurrent", isHWOvercurrentError);
-		http.addData("error_hw_overvolt", isHWOvervoltError);
+		http.addData("error_low_array_power", error_low_array_power);
+		http.addData("error_mosfet_overheat", error_mosfet_overheat);
+		http.addData("error_battery_low", error_battery_low);
+		http.addData("error_battery_full", error_battery_full);
+		http.addData("error_12v_undervolt", error_12v_undervolt);
+		http.addData("error_hw_overcurrent", error_hw_overcurrent);
+		http.addData("error_hw_overvolt", error_hw_overvolt);
 
-		http.addData("flag_input_current_min", isFlagInputCurrentMin);
-		http.addData("flag_input_current_max", isFlagInputCurrentMax);
-		http.addData("flag_output_voltage_max", isFlagOutputVoltageMax);
-		http.addData("flag_mosfet_temp", isFlagMosfetTemp);
-		http.addData("flag_duty_cycle_min", isFlagDutyCycleMin);
-		http.addData("flag_duty_cycle_max", isFlagDutyCycleMax);
-		http.addData("flag_local_mppt", isFlagLocalMppt);
-		http.addData("flag_global_mppt", isFlagGlobalMppt);
+		http.addData("flag_input_current_min", flag_input_current_min);
+		http.addData("flag_input_current_max", flag_input_current_max);
+		http.addData("flag_output_voltage_max", flag_output_voltage_max);
+		http.addData("flag_mosfet_temp", flag_mosfet_temp);
+		http.addData("flag_duty_cycle_min", flag_duty_cycle_min);
+		http.addData("flag_duty_cycle_max", flag_duty_cycle_max);
+		http.addData("flag_local_mppt", flag_local_mppt);
+		http.addData("flag_global_mppt", flag_global_mppt);
 
 		http.addData("mode", getMode());
 
