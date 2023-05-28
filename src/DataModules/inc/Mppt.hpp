@@ -119,23 +119,54 @@ namespace SolarGators::DataModules
 				uint8_t getCANRXerr() const;
 				uint8_t getCANTXerr() const;
 				uint8_t getCANTXoverflow() const;
-				uint8_t getErrorFlags() const;
-				uint8_t getLimitFlags() const;
-				uint8_t getMode() const;
+				bool getMode() const;
 				uint8_t getReserved() const;
 				uint8_t getCounter() const;
 
 				void ToByteArray(uint8_t* buff) const;
 				void FromByteArray(uint8_t* buff);
+
+				bool isLowArrayPowerError() const;
+				bool isMosfetOverheatError() const;
+				bool isBatteryLowError() const;
+				bool isBatteryFullError() const;
+				bool is12vUndervoltError() const;
+				bool isHWOvercurrentError() const;
+				bool isHWOvervoltError() const;
+
+				bool isFlagInputCurrentMin() const;
+				bool isFlagInputCurrentMax() const;
+				bool isFlagOutputVoltageMax() const;
+				bool isFlagMosfetTemp() const;
+				bool isFlagDutyCycleMin() const;
+				bool isFlagDutyCycleMax() const;
+				bool isFlagLocalMppt() const;
+				bool isFlagGlobalMppt() const;
+
 			protected:
 				uint8_t CANRXerr;
 				uint8_t CANTXerr;
 				uint8_t CANTXoverflow;
-				uint8_t errorFlags;
-				uint8_t limitFlags;
-				uint8_t mode;
+				bool mode;
 				uint8_t reserved;
 				uint8_t counter;
+
+				bool error_low_array_power;
+				bool error_mosfet_overheat;
+				bool error_battery_low;
+				bool error_battery_full;
+				bool error_12v_undervolt;
+				bool error_hw_overcurrent;
+				bool error_hw_overvolt;
+
+				bool flag_input_current_min;
+				bool flag_input_current_max;
+				bool flag_output_voltage_max;
+				bool flag_mosfet_temp;
+				bool flag_duty_cycle_min;
+				bool flag_duty_cycle_max;
+				bool flag_local_mppt;
+				bool flag_global_mppt;
 
 	};
 
